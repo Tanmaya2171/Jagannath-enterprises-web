@@ -16,7 +16,7 @@
             display: flex;
             position: fixed;
             top: 0%;
-            left: 50;
+            left: 0;
             width: 100%;
             box-shadow: #9c9556 0px 2px 5px rgba(0,0,0,0.1);
             transition: background 0.3s;
@@ -50,13 +50,8 @@
         /* Banner Section */
 .banner {
     position: relative;
-    aspect-ratio: 16/9;
-    height: auto;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     text-align: center;
+    width: 100%;
 }
 
 /* Video as background */
@@ -67,26 +62,26 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: translateY(-10%)
+    transform: translateY(-10%);
     z-index: -1;
 }
 
 /* Text content over video */
 .banner-content {
-    z-index: 5;
-    color: rgb(188, 32, 32);
-    position: relative;
-    top: -500px;
-     transition: top 0.3s ease;
-    
+    width: 100%;
+    height: auto;
+    color: white;
 }
 
 .banner-content h1 {
-    font-size: 7rem;
-    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 3rem;
     font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 
