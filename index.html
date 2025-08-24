@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Jagannath - Fertilizers & Pesticides</title>
+    <!-- Paste in <head> -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: linear-gradient(to left, #4caf50, #2e7d32);
+            color: white;
+            padding: 1rem 2rem;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            position: fixed;
+            top: 0%;
+            left: 50;
+            width: 100%;
+            box-shadow: #9c9556 0px 2px 5px rgba(0,0,0,0.1);
+            transition: background 0.3s;
+            z-index: 999;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            boarder-radius: 0.5rem
+        }
+
+        .navbar a:hover {
+            background-color: rgba(200, 255, 200, 0.3); /* light color overlay */
+            transform: scale(1.1); /* light zoom */
+            border-radius: 2rem; /* oval shape */
+        }
+
+        
+        /* Banner Section */
+.banner {
+    position: relative;
+    aspect-ratio: 16/9;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Video as background */
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateY(-10%)
+    z-index: -1;
+}
+
+/* Text content over video */
+.banner-content {
+    z-index: 5;
+    color: rgb(188, 32, 32);
+    position: relative;
+    top: -500px;
+     transition: top 0.3s ease;
+    
+}
+
+.banner-content h1 {
+    font-size: 7rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+
+        /* Menu Section */
+        .menu-section {
+            padding: 4rem 2rem;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .menu-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 4rem 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* About Us Section */
+        .about-us {
+            padding: 4rem 2rem;
+            background-color: #e8f5e9;
+            text-align: center;
+        }
+
+        /* Booking Section */
+        .booking {
+            padding: 4rem 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .booking form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .booking input, .booking select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .booking button {
+            padding: 1rem;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: color 0.5s ease;
+        }
+
+        .booking button::before {
+            content: '';
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to top,
+                rgba(0, 191, 255, 0.8),
+                rgba(0, 191, 255, 0.4),
+                transparent
+            );
+            transition: bottom 0.5s ease;
+            z-index: -1;
+        }
+
+        .booking button:hover::before {
+            bottom: 0;
+        }
+
+        .booking button:hover {
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.4);
+        }
+
+        .booking button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 4rem 2rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .blog-post {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .banner h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Products</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#booking">Book Slot</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#blog">Blog</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner -->
+   
+    <!-- this scetion for video playing background of banner -->
+      <!-- ✅ Updated Banner Section -->
+<section id="home" class="banner">
+    <img src="banner.jpg" alt="Banner Image" class="bg-video">
+    </section>
+    <div class="banner-content"> 
+        <h1>ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍</h1>
+        <p>ସାର ଏବଂ କୀଟନାଶକ କ୍ଷେତ୍ରରେ ଆପଣଙ୍କର ବିଶ୍ୱସ୍ତ ସହଯୋଗୀ</p>
+    </div>
+</section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <h2>ଆମର ଉତ୍ପାଦଗୁଡିକ</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>ଜୈବିକ ସାର</h3>
+                <p>୧୦୦% ପ୍ରାକୃତିକ ମୃତ୍ତିକା ବୃଦ୍ଧିକାରୀ</p>
+            </div>
+            <div class="menu-item">
+                <h3>କୀଟନାଶକ</h3>
+                <p>ପ୍ରଭାବଶାଳୀ ଫସଲ ସୁରକ୍ଷା</p>
+            </div>
+            <div class="menu-item">
+                <h3>ହାଇବ୍ରିଡ୍ ବିହନ</h3>
+                <p>ଉଚ୍ଚ-ଅମଳକ୍ଷମ କିସମ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <h2>ଗ୍ୟାଲେରୀ</h2>
+        <div class="gallery-grid">
+            <img src="3.png" alt="Fertilizer Bags">
+            <img src="2.png" alt="Pesticide Application">
+            <img src="1.png" alt="Farm Store">
+            <img src="4.png" alt="Organic Farming">
+            <img src="5.png" alt="Crop Protection">
+            <img src="6.png" alt="Harvesting">
+        </div>
+    </section>
+
+
+   <!-- Booking Section -->
+<section id="booking" class="booking">
+    <h2>ଏକ ପରାମର୍ଶ ସ୍ଲଟ୍ ବୁକ୍ କରନ୍ତୁ</h2>
+    <form id="bookingForm">
+        <label for="name">ନାମ</label>
+        <input type="text" id="name" name="name" placeholder="ନାମ" required>
+
+        <label for="phone">ଫୋନ୍</label>
+        <input type="tel" id="phone" name="phone" placeholder="ଫୋନ୍" required>
+
+        <label for="date">ତାରିଖ</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">ସମୟ ଚୟନ କରନ୍ତୁ</label>
+        <select id="time" name="time" required>
+            <option value="">ସମୟ ଚୟନ କରନ୍ତୁ</option>
+            <option value="morning">ସକାଳ (୯-୧୨)</option>
+            <option value="afternoon">ଅପରାହ୍ନ (୧-୪)</option>
+            <option value="evening">ସନ୍ଧ୍ୟା (୪-୭)</option>
+        </select>
+
+        <button type="submit"><span>ଏବେ ବୁକ୍ କରନ୍ତୁ</span></button>
+    </form>
+</section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>ଆମର ସେବାଗୁଡିକ</h2>
+        <div class="services-grid">
+            <div class="menu-item">
+                <h3>ମୃତ୍ତିକା ପରୀକ୍ଷା</h3>
+                <p>ବୃତ୍ତିଗତ ମୃତ୍ତିକା ବିଶ୍ଳେଷଣ</p>
+            </div>
+            <div class="menu-item">
+                <h3>ଫସଲ ପରାମର୍ଶ</h3>
+                <p> ବିଶେଷଜ୍ଞ ଚାଷ ପରାମର୍ଶ</p>
+            </div>
+            <div class="menu-item">
+                <h3>ବିତରଣ</h3>
+                <p>ଦ୍ରୁତ ଏବଂ ନିର୍ଭରଯୋଗ୍ୟ ସେବା</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <h2>ସର୍ବଶେଷ ବ୍ଲଗ୍ ପୋଷ୍ଟଗୁଡିକ |</h2>
+        <div class="blog-grid">
+            <div class="blog-post">
+                <h3>ଚାଷ ଟିପ୍ସ 2025</h3>
+                <p>ଉତ୍ତମ ଅମଳ ପାଇଁ ସର୍ବଶେଷ କୌଶଳ</p>
+            </div>
+            <div class="blog-post">
+                <h3>କୀଟନାଶସ୍ତ୍ର ସୁରକ୍ଷା</h3>
+                <p>How to use pesticides effectively</p>
+            </div>
+            <div class="blog-post">
+                <h3>Organic Farming</h3>
+                <p>Benefits of going organic</p>
+            </div>
+        </div>
+    </section>
+    <!-- About Us Section -->
+    <section id="about" class="about-us">
+        <h2>About Us</h2>
+        <p>Jagannath Enterprises has been serving farmers since 1990, providing high-quality fertilizers and pesticides to enhance agricultural productivity.</p>
+    </section>
+
+    <script>
+        // Smooth Scroll
+        document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Form Submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Booking successful! We will contact you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
