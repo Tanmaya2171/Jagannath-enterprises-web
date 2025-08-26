@@ -256,62 +256,98 @@
         }
 
 
-        /* Contact Section */
-.contact-section {
-    padding: 5rem 2rem;
-    background-color: #f8f9fa;
-    text-align: center;
+       .contact-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f0f8ff, #e6f2ff);
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .contact-container {
-    max-width: 700px;
-    margin: 0 auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.contact-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #1a3c34;
+.contact-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
 }
 
-.contact-container input,
-.contact-container textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+  resize: none;
+  transition: border-color 0.3s ease;
 }
 
-.contact-container textarea {
-    height: 150px;
-    resize: none;
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  color: #999;
+  font-size: 0.95rem;
+  transition: 0.3s ease all;
+  pointer-events: none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #0078ff;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label,
+.input-group textarea:focus + label,
+.input-group textarea:valid + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #0078ff;
+  background: #fff;
+  padding: 0 5px;
+  border-radius: 5px;
 }
 
 .btn-submit {
-    background: linear-gradient(to right, #1a3c34, #4caf50);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, #1a3c34, #4caf50);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-submit:hover {
-    background: linear-gradient(to right, #4caf50, #1a3c34);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 120, 255, 0.4);
 }
-
 
 /* Shop Details Section */
 .shop-details-section {
@@ -404,6 +440,9 @@
     }
 }
     </style>
+
+
+
 </head>
 <body>
     <!-- Navbar -->
@@ -479,24 +518,31 @@
         </div>
     </section>
 
-        <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2>ଯୋଗାଯୋଗ କରନ୍ତୁ</h2>
-        <div class="contact-container">
-            <form id="contactForm">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="ନାମ" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="ଇମେଲ୍" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="message" placeholder="ଆପଣଙ୍କର ମେସେଜ୍..." required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">ପଠାନ୍ତୁ</button>
-            </form>
-        </div>
-    </section>
+       <!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <h2 class="contact-title">ଯୋଗାଯୋଗ କରନ୍ତୁ</h2>
+  <div class="contact-container">
+    <form id="contactForm" class="contact-form">
+      <div class="input-group">
+        <input id="name" name="user_name" type="text" required>
+        <label for="name">ନାମ</label>
+      </div>
+
+      <div class="input-group">
+        <input id="email" name="user_email" type="email" required>
+        <label for="email">ଇମେଲ୍</label>
+      </div>
+
+      <div class="input-group">
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <label for="message">ଆପଣଙ୍କର ମେସେଜ୍...</label>
+      </div>
+
+      <button type="submit" class="btn-submit">ପଠାନ୍ତୁ</button>
+    </form>
+  </div>
+</section>
+
 
 
     <!-- Shop Details Section -->
