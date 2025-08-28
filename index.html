@@ -439,9 +439,38 @@
         margin-top: 2rem;
     }
 }
+    
+.btn-submit.loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #fff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-left: 10px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
     </style>
 
+    <!-- JavaScript for for using Email js features -->
 
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <script type="text/javascript">
+        (function(){
+        emailjs.init({
+            publicKey: "4GOV7neBX0Qbmi_-s",
+        });
+        })();
+        </script>
+
+        <script src="script.js"></script>
+        
 
 </head>
 <body>
@@ -522,7 +551,8 @@
 <section id="contact" class="contact-section">
   <h2 class="contact-title">ଯୋଗାଯୋଗ କରନ୍ତୁ</h2>
   <div class="contact-container">
-    <form id="contactForm" class="contact-form">
+
+    <form id="contactForm" class="contact-form" onsubmit="sendMail(event)">
       <div class="input-group">
         <input id="name" name="user_name" type="text" required>
         <label for="name">ନାମ</label>
@@ -594,7 +624,7 @@
         });
 
         // Form Submission
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        document.getElementById('sendMail').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('ବୁକିଂ ସଫଳ! ଆମେ ଶୀଘ୍ର ଆପଣଙ୍କୁ ଯୋଗାଯୋଗ କରିବୁ।');
             this.reset();
