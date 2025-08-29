@@ -31,5 +31,6 @@ function sendMail(event) {
                 submitButton.disabled = false;
                 submitButton.textContent = 'ପଠାନ୍ତୁ';
             });
+
+            
     }
-    
