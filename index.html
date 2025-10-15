@@ -444,6 +444,89 @@
         margin-top: 2rem;
     }
 }
+
+/* css and jjs part for ama utpada */
+    .menu-section {
+        padding: 50px 20px;
+        text-align: center;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 1200px;
+        border-radius: 10px;
+        font-family: 'Noto Sans Odia', Arial, sans-serif;
+    }
+
+    .menu-section h2 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 40px;
+        font-weight: bold;
+    }
+
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .menu-item {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background-color: #e6f3e6;
+    }
+
+    .menu-item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .menu-item h3 {
+        font-size: 1.8rem;
+        color: #27ae60;
+        margin-bottom: 10px;
+    }
+
+    .menu-item p {
+        font-size: 1rem;
+        color: #7f8c8d;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .menu-section h2 {
+            font-size: 2rem;
+        }
+
+        .menu-item img {
+            height: 120px;
+        }
+
+        .menu-item h3 {
+            font-size: 1.5rem;
+        }
+
+        .menu-item p {
+            font-size: 0.9rem;
+        }
+    }
     
 .btn-submit.loading::after {
     content: '';
@@ -500,23 +583,26 @@
     </section>
 
     <!-- Menu Section -->
-    <section id="menu" class="menu-section" data-aos="zoom-in">
-        <h2>ଆମର ଉତ୍ପାଦଗୁଡିକ</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <h3>ଜୈବିକ ସାର</h3>
-                <p>୧୦୦% ପ୍ରାକୃତିକ ମୃତ୍ତିକା ବୃଦ୍ଧିକାରୀ</p>
-            </div>
-            <div class="menu-item">
-                <h3>କୀଟନାଶକ</h3>
-                <p>ପ୍ରଭାବଶାଳୀ ଫସଲ ସୁରକ୍ଷା</p>
-            </div>
-            <div class="menu-item">
-                <h3>ହାଇବ୍ରିଡ୍ ବିହନ</h3>
-                <p>ଉଚ୍ଚ-ଅମଳକ୍ଷମ କିସମ</p>
-            </div>
-        </div>
-    </section>
+<section id="menu" class="menu-section" data-aos="zoom-in">
+    <h2>ଆମର ଉତ୍ପାଦଗୁଡିକ</h2>
+    <div class="menu-grid">
+        <a href="fertilizer.html" class="menu-item">
+            <img src="bio.jpg" alt="Organic Fertilizer">
+            <h3>ଜୈବିକ ସାର</h3>
+            <p>୧୦୦% ପ୍ରାକୃତିକ ମୃତ୍ତିକା ବୃଦ୍ଧିକାରୀ</p>
+        </a>
+        <a href="pesticides.html" class="menu-item">
+            <img src="pes.jpg" alt="Pesticides">
+            <h3>କୀଟନାଶକ</h3>
+            <p>ପ୍ରଭାବଶାଳୀ ଫସଲ ସୁରକ୍ଷା</p>
+        </a>
+        <a href="seeds.html" class="menu-item">
+            <img src="seed.jpg" alt="Hybrid Seeds">
+            <h3>ହାଇବ୍ରିଡ୍ ବିହନ</h3>
+            <p>ଉଚ୍ଚ-ଅମଳକ୍ଷମ କିସମ</p>
+        </a>
+    </div>
+</section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery">
@@ -586,6 +672,7 @@
         <div class="shop-info">
             <p><strong>Shopkeeper Name:</strong> ପ୍ରଶାନ୍ତ ପ୍ରଧାନ</p>
             <p><strong>Mobile Number:</strong> 9777752212</p>
+            <p><strong>Mobile Number:</strong> 8249569946</p>
             <p><strong>Email ID:</strong> tanmayapradhan2171@gmail.com</p>
             <p><strong>Address:</strong> ଦଳନଇ ବଜାର, ଗୋପ, ପୁରୀ, ଓଡିଶା -752002</p>
         </div>
