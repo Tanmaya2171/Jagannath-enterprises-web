@@ -543,6 +543,19 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+.blog-post.clickable {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    .blog-post.clickable:hover {
+        background-color: #f0f8ff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transform: translateY(-5px);
+    }
     </style>
 
     <!-- JavaScript for for using Email js features -->
@@ -627,15 +640,34 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog" data-aos="fade-right">
-        <h2>ସର୍ବଶେଷ ବ୍ଲଗ୍ ପୋଷ୍ଟଗୁଡିକ</h2>
-        <div class="blog-grid">
-            <div class="blog-post"><h3>ଚାଷ ଟିପ୍ସ 2025</h3><p>ଉତ୍ତମ ଅମଳ ପାଇଁ ସର୍ବଶେଷ କୌଶଳ</p></div>
-            <div class="blog-post"><h3>କୀଟନାଶକ ସୁରକ୍ଷା</h3><p>କୀଟନାଶକଗୁଡିକୁ ପ୍ରଭାବଶାଳୀ ଭାବରେ ବ୍ୟବହାର କରିବାର ଉପାୟ</p></div>
-            <div class="blog-post"><h3>ଜୈବିକ ଚାଷ</h3><p>ଜୈବିକ ଚାଷର ଲାଭ</p></div>
+   <!-- Blog Section -->
+<section id="blog" class="blog" data-aos="fade-right">
+    <h2>ସର୍ବଶେଷ ବ୍ଲଗ୍ ପୋଷ୍ଟଗୁଡିକ</h2>
+    <div class="blog-grid">
+        
+        <!-- Blog Post 1 -->
+        <div class="blog-post clickable" 
+             data-url="blog-farming-tips-2025.html">
+            <h3>ଚାଷ ଟିପ୍ସ 2025</h3>
+            <p>ଉତ୍ତମ ଅମଳ ପାଇଁ ସର୍ବଶେଷ କୌଶଳ</p>
         </div>
-    </section>
+
+        <!-- Blog Post 2 -->
+        <div class="blog-post clickable" 
+             data-url="blog-pesticide-safety.html">
+            <h3>କୀଟନାଶକ ସୁରକ୍ଷା</h3>
+            <p>କୀଟନାଶକଗୁଡିକୁ ପ୍ରଭାବଶାଳୀ ଭାବରେ ବ୍ୟବହାର କରିବାର ଉପାୟ</p>
+        </div>
+
+        <!-- Blog Post 3 -->
+        <div class="blog-post clickable" 
+             data-url="blog-organic-farming.html">
+            <h3>ଜୈବିକ ଚାଷ</h3>
+            <p>ଜୈବିକ ଚାଷର ଲାଭ</p>
+        </div>
+
+    </div>
+</section>
 
        <!-- Contact Section -->
 <section id="contact" class="contact-section" data-aos="zoom-in">
@@ -729,6 +761,19 @@
     duration: 1000, // animation time in ms
     once: true,     // ek baar hi chalega
   });
+
+  
+    document.querySelectorAll('.blog-post.clickable').forEach(function(card) {
+        card.addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            if (url) {
+                // ନୂଆ ଟ୍ୟାବରେ ଖୋଲିବା ଚାହୁଁଥିଲେ: window.open(url, '_blank');
+                window.location.href = url;           // ସେହି ଟ୍ୟାବରେ ଖୋଲିବ
+                // window.open(url, '_blank');        // ନୂଆ ଟ୍ୟାବରେ ଖୋଲିବ
+            }
+        });
+    });
+
 </script>
 
 

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ଚାଷ ଟିପ୍ସ 2025 - ଉନ୍ନତ ଅମଳ ପାଇଁ ନୂଆ କୌଶଳ</title>
+    
+    <!-- Google Font - Noto Sans Oriya -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --gradient: linear-gradient(135deg, #1b5e20, #4caf50);
+            --light-green: #e8f5e9;
+            --card-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --hover-shadow: 0 25px 50px rgba(46,125,50,0.25);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Sans Oriya', sans-serif;
+            background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e9 100%);
+            color: #2d3436;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Header */
+        .header {
+            background: var(--gradient);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path fill="%23fff" d="M0 50 Q25 20 50 50 T100 50 Q75 80 50 50 T0 50Z"/></svg>') repeat;
+            animation: wave 20s linear infinite;
+        }
+        @keyframes wave { 0% { background-position: 0 0; } 100% { background-position: 100px 100px; } }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+        }
+
+        /* Main Content Area */
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 50% - 50% */
+            gap: 40px;
+            padding: 50px;
+        }
+
+        .main-content {
+            padding-right: 20px;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin: 30px 0 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        ul {
+            margin: 25px 0;
+        }
+        li {
+            background: white;
+            margin: 18px 0;
+            padding: 18px 22px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-left: 6px solid #4caf50;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        li:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(76,175,80,0.2);
+        }
+        li strong {
+            color: var(--primary);
+            font-size: 1.1em;
+        }
+
+        /* Video Section - 50% width, modern card */
+        .video-section {
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: sticky;
+            top: 30px;
+        }
+        .video-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 28px;
+            background: linear-gradient(135deg, #f8fff8, var(--light-green));
+        }
+        .video-info h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        .video-info p {
+            margin: 12px 0;
+            font-size: 1.05rem;
+        }
+        .tag {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 40px;
+            padding: 16px 32px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 25px rgba(46,125,50,0.3);
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(46,125,50,0.4);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .content {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+            .header h1 { font-size: 2.4rem; }
+            .video-card { position: static; }
+        }
+        @media (max-width: 600px) {
+            .header { padding: 40px 20px; }
+            .header h1 { font-size: 2rem; }
+            .content { padding: 20px; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>ଚାଷ ଟିପ୍ସ 2025</h1>
+            <p>ଉନ୍ନତ ଅମଳ ପାଇଁ ସର୍ବଶେଷ ଓ ବୈଜ୍ଞାନିକ କୌଶଳ</p>
+        </div>
+
+        <!-- Main Content + Video Side by Side -->
+        <div class="content">
+            
+            <!-- Left Side - Text Content -->
+            <div class="main-content">
+                <h2>2025 ରେ ଚାଷୀମାନଙ୍କ ପାଇଁ ଟପ୍ 10 ଟିପ୍ସ</h2>
+                <ul>
+                    <li><strong>ମାଟି ପରୀକ୍ଷା ବାଧ୍ୟତାମୂଳକ କରନ୍ତୁ</strong> – ପ୍ରତି 2 ବର୍ଷରେ ଥରେ ମାଟି ପରୀକ୍ଷା କରାଇ ସଠିକ୍ ସାର ବ୍ୟବହାର କରନ୍ତୁ।</li>
+                    <li><strong>ଡ୍ରିପ୍ ଇରିଗେସନ୍ ଲଗାନ୍ତୁ</strong> – 40-60% ପାଣି ବଞ୍ଚତ ହେବ ଏବଂ ଅମଳ ବଢ଼ିବ।</li>
+                    <li><strong>ଜୈବିକ ଖତ (ଭର୍ମିକମ୍ପୋଷ୍ଟ) ବ୍ୟବହାର କରନ୍ତୁ</strong> – ମାଟିର ଜୈବିକ ଗୁଣ ବଢ଼ିବ।</li>
+                    <li><strong>ମିଶ୍ର ଚାଷ (Intercropping)</strong> – ଧାନ ସହିତ ମୁଗ/ବିରି ଚାଷ କରି ଅଧିକ ଲାଭ ନେଇପାରିବେ।</li>
+                    <li><strong>ଡ୍ରୋନ୍ ସ୍ପ୍ରେ ବ୍ୟବହାର</strong> – କୀଟନାଶକ ଓ ସାର 90% ସଠିକ୍ ସ୍ଥାନରେ ପହଞ୍ଚିବ।</li>
+                    <li><strong>ହାଇବ୍ରିଡ୍ ଓ ଉନ୍ନତ ଜାତି ବିହନ</strong> – ସ୍ୱର୍ଣ୍ଣ ସୁବର୍ଣ୍ଣ-1, BINA ଧାନ-21 ଆଦି।</li>
+                    <li><strong>ମୋବାଇଲ୍ ଆପ୍ ବ୍ୟବହାର</strong> – Kisan Suvidha, Agri App ରେ ପାଗ ଓ ବଜାର ମୂଲ୍ୟ ଦେଖନ୍ତୁ।</li>
+                    <li><strong>ଫସଲ ବୀମା କରାଇଦିଅନ୍ତୁ</strong> – PMFBY ଅଧୀନରେ ଅଳ୍ପ ପ୍ରିମିୟମ୍ ରେ ସୁରକ୍ଷା।</li>
+                </ul>
+
+                <h2>ଆଗକୁ ଆସୁଛି ନୂଆ ଟେକ୍ନୋଲୋଜି</h2>
+                <p style="font-size:1.1rem; background: #f0f8f0; padding:20px; border-radius:16px; border-left:5px solid #4caf50;">
+                    2025 ସୁଦ୍ଧା ଓଡ଼ିଶାରେ <strong>AI ଭିତ୍ତିକ ଫସଲ ନିରୀକ୍ଷଣ</strong>, ରୋବୋଟିକ୍ ଅମଳ କଟା ଓ ସ୍ମାର୍ଟ ଗ୍ରୀନହାଉସ୍ ଆସିବ। ଏବେ ଠାରୁ ପ୍ରସ୍ତୁତ ରହନ୍ତୁ!
+                </p>
+            </div>
+
+            <!-- Right Side - Video (50% width) -->
+            <div class="video-section">
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VUn5-s5Yl7c" 
+                                title="ଚାଷ ଟିପ୍ସ 2025" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                  <div class="video-info">
+    <h3>ଏହି ବିଷୟରେ ସଂପୂର୍ଣ୍ଣ ଭିଡିଓ</h3>
+    <p>ଏହି ଭିଡିଓଟି <strong>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</strong> (Department of Agriculture & Farmers' Empowerment, Government of Odisha) ର ଅଫିସିଆଲ୍ ଚ୍ୟାନେଲ୍‌ରୁ ନିଆଯାଇଛି।</p>
+    <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
+       <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
+    </p>
+    <p><strong>ଅବଧି:</strong> 12 ମିନିଟ୍</p>
+    <span class="tag">ଓଡ଼ିଶା ସରକାର • 2025 ସ୍ପେସିଆଲ୍</span>
+</div>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">← ମୁଖ୍ୟ ପେଜ୍କୁ ଫେରନ୍ତୁ</a>
+    </div>
+
+</body>
+</html>
