@@ -4,25 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jagannath Enterprises - Fertilizers & Pesticides</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Odia:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- AOS Animation CSS -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        /* CSS Variables for easier theme management */
+        :root {
+            --primary-green: #2e7d32; /* Darker green */
+            --secondary-green: #4caf50; /* Medium green */
+            --dark-green-gradient-start: #1a3c34; /* Very dark green */
+            --dark-green-gradient-end: #388e3c; /* A bit lighter dark green */
+            --light-gray: #f8f9fa;
+            --medium-gray: #eceff1;
+            --text-dark: #333;
+            --text-medium: #555;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --poppins: 'Poppins', sans-serif;
+            --odia-font: 'Noto Sans Odia', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--poppins);
+            scroll-behavior: smooth; /* Smooth scrolling for nav links */
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-gray);
         }
 
         /* Navbar Styles */
         .navbar {
-            background: linear-gradient(to right, #1a3c34, #4caf50);
-            color: white;
-            padding: 1.2rem 2rem;
+            background: linear-gradient(to right, var(--dark-green-gradient-start), var(--dark-green-gradient-end));
+            color: var(--white);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,29 +53,51 @@
             top: 0;
             left: 0;
             width: 100%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            transition: background 0.3s ease;
+            transition: background 0.4s ease, padding 0.4s ease;
         }
 
         .navbar ul {
             list-style: none;
             display: flex;
             gap: 2.5rem;
+            margin: 0; /* Ensure no default margin */
+            padding: 0; /* Ensure no default padding */
         }
 
         .navbar a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
             font-weight: 500;
             padding: 0.6rem 1.2rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease-in-out;
             border-radius: 25px;
+            letter-spacing: 0.5px;
+            position: relative; /* For underline effect */
+            overflow: hidden;
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-green);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
+        }
+
+        .navbar a:hover::before {
+            transform: translateX(0);
         }
 
         .navbar a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px); /* Slight lift on hover */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         /* Banner Section */
@@ -61,6 +106,9 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .bg-video {
@@ -71,511 +119,594 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            filter: brightness(0.7);
+            filter: brightness(0.6); /* Slightly darker for better contrast */
+            animation: fadeIn 2s ease-out; /* Custom animation */
         }
 
         .banner-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
-            color: white;
+            color: var(--white);
             z-index: 1;
+            padding: 1rem; /* Add padding for small screens */
         }
 
         .banner-content h1 {
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 700;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-            margin-bottom: 1rem;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            font-family: var(--odia-font); /* Apply Odia font */
         }
 
         .banner-content p {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             font-weight: 400;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            font-family: var(--odia-font); /* Apply Odia font */
         }
 
-        /* Menu Section */
-        .menu-section {
-            padding: 5rem 2rem;
-            background-color: #f8f9fa;
+        /* General Section Styling */
+        section {
+            padding: 6rem 2rem;
             text-align: center;
+            position: relative; /* For AOS animations */
         }
 
-        .menu-section h2, .gallery h2, .booking h2, .services h2, .blog h2, .about-us h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #1a3c34;
+        section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--primary-green);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block; /* To center the ::after pseudo-element */
+            font-family: var(--odia-font); /* Apply Odia font */
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-green);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Menu Section (Products) */
+        .menu-section {
+            background-color: var(--medium-gray); /* Lighter background */
         }
 
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .menu-item {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none; /* Remove underline for links */
+            color: inherit;
+            cursor: pointer;
         }
 
         .menu-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px) scale(1.02); /* More pronounced lift */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            background-color: #f2fff2; /* Very subtle green tint on hover */
         }
 
+        .menu-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .menu-item:hover img {
+            transform: scale(1.03); /* Slight zoom on image too */
+        }
+
+
         .menu-item h3 {
-            font-size: 1.8rem;
-            color: #2e7d32;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            font-family: var(--odia-font);
         }
 
         .menu-item p {
-            font-size: 1rem;
-            color: #555;
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            text-align: center;
+            font-family: var(--odia-font);
         }
 
         /* Gallery Section */
         .gallery {
-            padding: 5rem 2rem;
-            background-color: #fff;
+            background-color: var(--white);
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 1.8rem;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .gallery-grid img {
             width: 100%;
-            height: 250px;
+            height: 280px;
             object-fit: cover;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
         }
 
         .gallery-grid img:hover {
-            transform: scale(1.05);
+            transform: scale(1.08) rotate(1deg); /* More dynamic hover */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
         }
 
-        /* Services Section */
+        /* Services Section (Similar to Menu Item styling) */
         .services {
-            padding: 5rem 2rem;
-            background-color: #f8f9fa;
+            background-color: var(--light-gray);
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
-
         /* Blog Section */
         .blog {
-            padding: 5rem 2rem;
-            background-color: #fff;
+            background-color: var(--white);
         }
 
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
         .blog-post {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--medium-gray);
         }
 
         .blog-post:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            background-color: #f2fff2;
         }
 
         .blog-post h3 {
-            font-size: 1.8rem;
-            color: #2e7d32;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            font-family: var(--odia-font);
         }
 
         .blog-post p {
-            font-size: 1rem;
-            color: #555;
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            font-family: var(--odia-font);
         }
 
         /* About Us Section */
         .about-us {
-       .about-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 2rem; /* Space between text and photo */
-}
+            background-color: var(--light-gray);
+        }
+        .about-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 4rem; /* More space between text and photo */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            padding: 0 1rem;
+        }
 
-.about-text {
-    flex: 1; /* Takes up left side */
-    color: #333;
-}
+        .about-text {
+            flex: 1;
+            min-width: 300px; /* Ensure text doesn't get too narrow */
+            color: var(--text-dark);
+            text-align: left;
+        }
 
-.about-text h3 {
-    font-size: 1.8rem;
-    color: #2e7d32;
-    margin-bottom: 1rem;
-}
+        .about-text h3 {
+            font-size: 2.2rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-family: var(--odia-font);
+        }
 
-.about-text p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-}
+        .about-text p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            font-family: var(--odia-font);
+        }
 
-.about-photo {
-    flex: 0 0 40%; /* Takes up right side, fixed width */
-    text-align: right;
-}
+        .about-photo {
+            flex: 0 0 45%; /* Slightly larger photo section */
+            text-align: center; /* Center image on smaller screens */
+        }
 
-.about-photo img {
-    width: 100%;
-    max-width: 400px; /* Adjust max size as needed */
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+        .about-photo img {
+            width: 100%;
+            max-width: 450px; /* Adjust max size as needed */
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s ease-in-out;
+        }
+        .about-photo img:hover {
+            transform: scale(1.03);
+        }
+
+       /* Contact Section */
+       .contact-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #e0f2f7, #d7e8ee); /* Softer, cooler gradient */
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 3rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            font-family: var(--odia-font);
+        }
+        .contact-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-green);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 3.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 550px; /* Slightly wider form */
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px; /* More space */
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 15px 12px; /* More padding */
+            border: none;
+            border-bottom: 2px solid var(--medium-gray);
+            outline: none;
+            font-size: 1.1rem;
+            background: transparent;
+            resize: vertical; /* Allow vertical resize for textarea */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 5px 5px 0 0; /* Slight rounding for top */
+            font-family: var(--poppins);
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 12px;
+            top: 15px; /* Adjust top to match padding */
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: 0.3s ease all;
+            pointer-events: none;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: var(--secondary-green);
+            box-shadow: 0 2px 8px rgba(var(--secondary-green), 0.2);
+        }
+
+        .input-group input:focus + label,
+        .input-group input:valid + label,
+        .input-group textarea:focus + label,
+        .input-group textarea:valid + label {
+            top: -12px; /* Lifted higher */
+            left: 10px;
+            font-size: 0.85rem;
+            color: var(--primary-green);
+            background: var(--white);
+            padding: 0 6px;
+            border-radius: 5px;
+            z-index: 1; /* Ensure label is above input */
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px; /* Larger button */
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(to right, var(--dark-green-gradient-start), var(--secondary-green));
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, opacity 0.25s ease;
+            letter-spacing: 0.8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px); /* Subtle lift */
+            box-shadow: 0 8px 25px rgba(var(--primary-green), 0.3); /* Green shadow */
+            filter: brightness(1.1);
+        }
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Shop Details Section */
+        .shop-details-section {
+            background-color: var(--white);
+        }
+
+        .shop-details-container {
+            max-width: 700px; /* Slightly wider */
+            margin: 0 auto;
+            background: var(--medium-gray);
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            text-align: left; /* Align text within container */
+            padding-bottom: 0.5rem; /* Adjust padding for map */
+        }
+
+        .shop-info {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        .shop-info p {
+            margin-bottom: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--odia-font);
+        }
+        .shop-info p strong {
+            color: var(--primary-green);
+        }
+        .shop-info p::before { /* Add subtle icons for aesthetic */
+            content: "•"; /* Placeholder, can replace with actual icons */
+            color: var(--secondary-green);
+            font-size: 1.5em;
+            line-height: 1;
         }
 
 
-       .contact-section {
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #f0f8ff, #e6f2ff);
-  text-align: center;
-}
-
-.contact-title {
-  font-size: 2rem;
-  color: #222;
-  margin-bottom: 20px;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-.contact-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.contact-form {
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 500px;
-}
-
-.input-group {
-  position: relative;
-  margin-bottom: 25px;
-}
-
-.input-group input,
-.input-group textarea {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  outline: none;
-  font-size: 1rem;
-  background: transparent;
-  resize: none;
-  transition: border-color 0.3s ease;
-}
-
-.input-group label {
-  position: absolute;
-  left: 12px;
-  top: 12px;
-  color: #999;
-  font-size: 0.95rem;
-  transition: 0.3s ease all;
-  pointer-events: none;
-}
-
-.input-group input:focus,
-.input-group textarea:focus {
-  border-color: #0078ff;
-}
-
-.input-group input:focus + label,
-.input-group input:valid + label,
-.input-group textarea:focus + label,
-.input-group textarea:valid + label {
-  top: -10px;
-  left: 10px;
-  font-size: 0.8rem;
-  color: #0078ff;
-  background: #fff;
-  padding: 0 5px;
-  border-radius: 5px;
-}
-
-.btn-submit {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(to right, #1a3c34, #4caf50);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-submit:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 120, 255, 0.4);
-}
-
-/* Shop Details Section */
-.shop-details-section {
-    padding: 4rem 2rem;
-    background-color: #fff;
-    text-align: center;
-}
-
-.shop-details-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-    color: #1a3c34;
-}
-
-.shop-details-container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #f8f9fa;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
-    padding: 1.8rem 1.5rem 0.2rem 1.5rem;
-}
-
-.shop-info {
-    text-align: left;
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 1.2rem;
-}
-
-.shop-info p {
-    margin-bottom: 0.7rem;
-    font-weight: 500;
-}
-
-.shop-map iframe {
-    width: 100%;
-    height: 220px;
-    border: 0;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.07);
-}
-
-
-
+        .shop-map iframe {
+            width: 100%;
+            height: 300px; /* Taller map */
+            border: 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .navbar ul {
-                gap: 1rem;
-                flex-wrap: wrap;
+                gap: 1.5rem;
             }
-
             .banner-content h1 {
+                font-size: 4rem;
+            }
+            .banner-content p {
+                font-size: 1.5rem;
+            }
+            section h2 {
                 font-size: 2.5rem;
             }
-
-            .banner-content p {
-                font-size: 1.2rem;
+            .menu-item h3, .blog-post h3 {
+                font-size: 1.8rem;
             }
-
-            .menu-section h2, .gallery h2, .booking h2, .services h2, .blog h2, .about-us h2 {
+            .about-text h3 {
                 font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1rem;
+            }
+            .navbar ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.8rem;
+            }
+            .navbar a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            .banner-content h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            .banner-content p {
+                font-size: 1.3rem;
+            }
+            section {
+                padding: 4rem 1rem;
+            }
+            section h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            .menu-grid, .gallery-grid, .services-grid, .blog-grid {
+                grid-template-columns: 1fr; /* Single column layout */
+                gap: 2rem;
+            }
+            .menu-item, .blog-post {
+                padding: 2rem;
+            }
+            .menu-item img {
+                height: 150px;
+            }
+            .about-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 3rem;
+            }
+            .about-text {
+                text-align: center;
+            }
+            .about-photo {
+                flex: 0 0 80%; /* Allow photo to take more width */
+            }
+            .about-text h3 {
+                font-size: 1.8rem;
+            }
+            .about-text p {
+                font-size: 1.1rem;
+            }
+            .contact-form {
+                padding: 2.5rem;
+            }
+            .input-group input, .input-group textarea {
+                font-size: 1rem;
+            }
+            .btn-submit {
+                font-size: 1.1rem;
+            }
+            .shop-info p {
+                font-size: 1.1rem;
             }
         }
 
         @media (max-width: 480px) {
             .navbar a {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
             }
-
             .banner-content h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
-
             .banner-content p {
+                font-size: 1.1rem;
+            }
+            section h2 {
+                font-size: 1.8rem;
+            }
+            .menu-item h3, .blog-post h3 {
+                font-size: 1.5rem;
+            }
+            .menu-item p, .blog-post p {
+                font-size: 1rem;
+            }
+            .about-text h3 {
+                font-size: 1.6rem;
+            }
+            .about-text p {
+                font-size: 1rem;
+            }
+            .shop-info p {
                 font-size: 1rem;
             }
         }
-        @media (max-width: 768px) {
-    .about-container {
-        flex-direction: column; /* Stack text and photo vertically */
-        align-items: center;
-    }
 
-    .about-photo {
-        text-align: center;
-        margin-top: 2rem;
-    }
-}
-
-/* css and jjs part for ama utpada */
-    .menu-section {
-        padding: 50px 20px;
-        text-align: center;
-        background-color: #ffffff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin: 20px auto;
-        max-width: 1200px;
-        border-radius: 10px;
-        font-family: 'Noto Sans Odia', Arial, sans-serif;
-    }
-
-    .menu-section h2 {
-        font-size: 2.5rem;
-        color: #2c3e50;
-        margin-bottom: 40px;
-        font-weight: bold;
-    }
-
-    .menu-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        padding: 0 20px;
-    }
-
-    .menu-item {
-        background-color: #f9f9f9;
-        padding: 20px;
-        border-radius: 8px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .menu-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        background-color: #e6f3e6;
-    }
-
-    .menu-item img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
-
-    .menu-item h3 {
-        font-size: 1.8rem;
-        color: #27ae60;
-        margin-bottom: 10px;
-    }
-
-    .menu-item p {
-        font-size: 1rem;
-        color: #7f8c8d;
-        margin: 0;
-    }
-
-    @media (max-width: 768px) {
-        .menu-section h2 {
-            font-size: 2rem;
+        /* Custom Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        .menu-item img {
-            height: 120px;
+        /* Loading Spinner for button */
+        .btn-submit.loading {
+            cursor: wait;
+        }
+        .btn-submit.loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-top: 3px solid var(--white);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 12px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .menu-item h3 {
-            font-size: 1.5rem;
-        }
-
-        .menu-item p {
-            font-size: 0.9rem;
-        }
-    }
-    
-.btn-submit.loading::after {
-    content: '';
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #fff;
-    border-top: 2px solid transparent;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin-left: 10px;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-.blog-post.clickable {
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: 1px solid #ddd;
-        padding: 20px;
-        border-radius: 10px;
-        background-color: #f9f9f9;
-    }
-    .blog-post.clickable:hover {
-        background-color: #f0f8ff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        transform: translateY(-5px);
-    }
     </style>
 
     <!-- JavaScript for for using Email js features -->
-
-
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-        <script type="text/javascript">
-        (function(){
-        emailjs.init({
-            publicKey: "4GOV7neBX0Qbmi_-s",
-        });
-        })();
-        </script>
-
-        <script src="script.js"></script>
-      
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar" data-aos="fade-right">
+    <nav class="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease-out-quad">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#menu">Products</a></li>
@@ -588,194 +719,253 @@
 
     <!-- Banner -->
     <section id="home" class="banner">
-        <img src="Banner.jpg" alt="Banner Image" class="bg-video" data-aos="zoom-out">
+        <img src="Banner.jpg" alt="Agricultural field with a view of a mountain range at sunset, symbolizing growth and prosperity." class="bg-video">
         <div class="banner-content">
-            <h1>ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍</h1>
-            <p>| ସାର ଏବଂ କୀଟନାଶକ କ୍ଷେତ୍ରରେ ଆପଣଙ୍କର ବିଶ୍ୱସ୍ତ ସହଯୋଗୀ |</p>
+            <h1 data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300" data-aos-easing="ease-out-sine">ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍</h1>
+            <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600" data-aos-easing="ease-out-sine">| ସାର ଏବଂ କୀଟନାଶକ କ୍ଷେତ୍ରରେ ଆପଣଙ୍କର ବିଶ୍ୱସ୍ତ ସହଯୋଗୀ |</p>
         </div>
     </section>
 
-    <!-- Menu Section -->
-<section id="menu" class="menu-section" data-aos="zoom-in">
-    <h2>ଆମର ଉତ୍ପାଦଗୁଡିକ</h2>
-    <div class="menu-grid">
-        <a href="fertilizer.html" class="menu-item">
-            <img src="bio.jpg" alt="Organic Fertilizer">
-            <h3>ଜୈବିକ ସାର</h3>
-            <p>୧୦୦% ପ୍ରାକୃତିକ ମୃତ୍ତିକା ବୃଦ୍ଧିକାରୀ</p>
-        </a>
-        <a href="pesticides.html" class="menu-item">
-            <img src="pes.jpg" alt="Pesticides">
-            <h3>କୀଟନାଶକ</h3>
-            <p>ପ୍ରଭାବଶାଳୀ ଫସଲ ସୁରକ୍ଷା</p>
-        </a>
-        <a href="seeds.html" class="menu-item">
-            <img src="seed.jpg" alt="Hybrid Seeds">
-            <h3>ହାଇବ୍ରିଡ୍ ବିହନ</h3>
-            <p>ଉଚ୍ଚ-ଅମଳକ୍ଷମ କିସମ</p>
-        </a>
-    </div>
-</section>
+    <!-- Menu Section (Products) -->
+    <section id="menu" class="menu-section">
+        <h2 data-aos="fade-up" data-aos-duration="800">ଆମର ଉତ୍ପାଦଗୁଡିକ</h2>
+        <div class="menu-grid">
+            <a href="fertilizer.html" class="menu-item" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+                <img src="bio.jpg" alt="Organic Fertilizer Bag with Green Leaves">
+                <h3>ଜୈବିକ ସାର</h3>
+                <p>୧୦୦% ପ୍ରାକୃତିକ ମୃତ୍ତିକା ବୃଦ୍ଧିକାରୀ</p>
+            </a>
+            <a href="pesticides.html" class="menu-item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                <img src="pes.jpg" alt="Pesticide Sprayer in a Field">
+                <h3>କୀଟନାଶକ</h3>
+                <p>ପ୍ରଭାବଶାଳୀ ଫସଲ ସୁରକ୍ଷା</p>
+            </a>
+            <a href="seeds.html" class="menu-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                <img src="seed.jpg" alt="Variety of Hybrid Seeds in small bags">
+                <h3>ହାଇବ୍ରିଡ୍ ବିହନ</h3>
+                <p>ଉଚ୍ଚ-ଅମଳକ୍ଷମ କିସମ</p>
+            </a>
+        </div>
+    </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery">
-        <h2>ଗ୍ୟାଲେରୀ</h2>
-        <div class="gallery-grid" data-aos="fade-up">
-            <img src="3.png" alt="Fertilizer Bags">
-            <img src="2.png" alt="Pesticide Application">
-            <img src="1.png" alt="Farm Store">
-            <img src="4.png" alt="Organic Farming">
-            <img src="5.png" alt="Crop Protection">
-            <img src="6.png" alt="Harvesting">
+        <h2 data-aos="fade-up" data-aos-duration="800">ଗ୍ୟାଲେରୀ</h2>
+        <div class="gallery-grid">
+            <img src="3.png" alt="Stacked bags of fertilizers in a store" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="800">
+            <img src="2.png" alt="A farmer applying pesticides with a backpack sprayer" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="800">
+            <img src="1.png" alt="Interior view of an agricultural supply store" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
+            <img src="4.png" alt="Healthy green crops growing in an organic farm" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="800">
+            <img src="5.png" alt="Close-up of a worker inspecting crops for pests" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="800">
+            <img src="6.png" alt="A field of wheat ready for harvest" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="800">
         </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="services">
-        <h2>ଆମର ସେବାଗୁଡିକ</h2>
-        <div class="services-grid" data-aos="flip-right">
-            <div class="menu-item"><h3>କୃଷି ଉପକରଣ</h3><p>ଏଠାରେ କୃଷି ଉପକରଣ ଉପଲବ୍ଧ</p></div>
-            <div class="menu-item"><h3>ଫସଲ ପରାମର୍ଶ</h3><p>ବିଶେଷଜ୍ଞ ଚାଷ ପରାମର୍ଶ</p></div>
-            <div class="menu-item"><h3>ବିତରଣ</h3><p>ଦ୍ରୁତ ଏବଂ ନିର୍ଭରଯୋଗ୍ୟ ସେବା</p></div>
+        <h2 data-aos="fade-up" data-aos-duration="800">ଆମର ସେବାଗୁଡିକ</h2>
+        <div class="services-grid">
+            <div class="menu-item" data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+                <h3>କୃଷି ଉପକରଣ</h3>
+                <p>ଏଠାରେ କୃଷି ଉପକରଣ ଉପଲବ୍ଧ</p>
+            </div>
+            <div class="menu-item" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
+                <h3>ଫସଲ ପରାମର୍ଶ</h3>
+                <p>ବିଶେଷଜ୍ଞ ଚାଷ ପରାମର୍ଶ</p>
+            </div>
+            <div class="menu-item" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
+                <h3>ବିତରଣ</h3>
+                <p>ଦ୍ରୁତ ଏବଂ ନିର୍ଭରଯୋଗ୍ୟ ସେବା</p>
+            </div>
         </div>
     </section>
 
-   <!-- Blog Section -->
-<section id="blog" class="blog" data-aos="fade-right">
-    <h2>ସର୍ବଶେଷ ବ୍ଲଗ୍ ପୋଷ୍ଟଗୁଡିକ</h2>
-    <div class="blog-grid">
-        
-        <!-- Blog Post 1 -->
-        <div class="blog-post clickable" 
-             data-url="blog-farming-tips-2025.html">
-            <h3>ଚାଷ ଟିପ୍ସ 2025</h3>
-            <p>ଉତ୍ତମ ଅମଳ ପାଇଁ ସର୍ବଶେଷ କୌଶଳ</p>
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <h2 data-aos="fade-up" data-aos-duration="800">ସର୍ବଶେଷ ବ୍ଲଗ୍ ପୋଷ୍ଟଗୁଡିକ</h2>
+        <div class="blog-grid">
+            <!-- Blog Post 1 -->
+            <div class="blog-post clickable"
+                 data-url="blog-farming-tips-2025.html"
+                 data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+                <h3>ଚାଷ ଟିପ୍ସ 2025</h3>
+                <p>ଉତ୍ତମ ଅମଳ ପାଇଁ ସର୍ବଶେଷ କୌଶଳ</p>
+            </div>
+
+            <!-- Blog Post 2 -->
+            <div class="blog-post clickable"
+                 data-url="blog-pesticide-safety.html"
+                 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                <h3>କୀଟନାଶକ ସୁରକ୍ଷା</h3>
+                <p>କୀଟନାଶକଗୁଡିକୁ ପ୍ରଭାବଶାଳୀ ଭାବରେ ବ୍ୟବହାର କରିବାର ଉପାୟ</p>
+            </div>
+
+            <!-- Blog Post 3 -->
+            <div class="blog-post clickable"
+                 data-url="blog-organic-farming.html"
+                 data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                <h3>ଜୈବିକ ଚାଷ</h3>
+                <p>ଜୈବିକ ଚାଷର ଲାଭ</p>
+            </div>
         </div>
+    </section>
 
-        <!-- Blog Post 2 -->
-        <div class="blog-post clickable" 
-             data-url="blog-pesticide-safety.html">
-            <h3>କୀଟନାଶକ ସୁରକ୍ଷା</h3>
-            <p>କୀଟନାଶକଗୁଡିକୁ ପ୍ରଭାବଶାଳୀ ଭାବରେ ବ୍ୟବହାର କରିବାର ଉପାୟ</p>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="contact-title" data-aos="fade-up" data-aos-duration="800">ଯୋଗାଯୋଗ କରନ୍ତୁ</h2>
+        <div class="contact-container">
+            <form id="contactForm" class="contact-form" onsubmit="sendMail(event)" data-aos="zoom-in" data-aos-duration="1200" data-aos-easing="ease-out-quad">
+                <div class="input-group">
+                    <input id="name" name="user_name" type="text" required>
+                    <label for="name">ନାମ</label>
+                </div>
+
+                <div class="input-group">
+                    <input id="email" name="user_email" type="email" required>
+                    <label for="email">ଇମେଲ୍</label>
+                </div>
+
+                <div class="input-group">
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <label for="message">ଆପଣଙ୍କର ମେସେଜ୍...</label>
+                </div>
+
+                <button type="submit" class="btn-submit">ପଠାନ୍ତୁ</button>
+            </form>
         </div>
-
-        <!-- Blog Post 3 -->
-        <div class="blog-post clickable" 
-             data-url="blog-organic-farming.html">
-            <h3>ଜୈବିକ ଚାଷ</h3>
-            <p>ଜୈବିକ ଚାଷର ଲାଭ</p>
-        </div>
-
-    </div>
-</section>
-
-       <!-- Contact Section -->
-<section id="contact" class="contact-section" data-aos="zoom-in">
-  <h2 class="contact-title">ଯୋଗାଯୋଗ କରନ୍ତୁ</h2>
-  <div class="contact-container">
-
-    <form id="contactForm" class="contact-form" onsubmit="sendMail(event)">
-      <div class="input-group">
-        <input id="name" name="user_name" type="text" required>
-        <label for="name">ନାମ</label>
-      </div>
-
-      <div class="input-group">
-        <input id="email" name="user_email" type="email" required>
-        <label for="email">ଇମେଲ୍</label>
-      </div>
-
-      <div class="input-group">
-        <textarea id="message" name="message" rows="5" required></textarea>
-        <label for="message">ଆପଣଙ୍କର ମେସେଜ୍...</label>
-      </div>
-
-      <button type="submit" class="btn-submit">ପଠାନ୍ତୁ</button>
-    </form>
-  </div>
-</section>
-
-
+    </section>
 
     <!-- Shop Details Section -->
-<section id="shop-details" class="shop-details-section" data-aos="fade-right">
-    <h2>ଦୋକାନର ବିବରଣୀ</h2>
-    <div class="shop-details-container">
-        <div class="shop-info">
-            <p><strong>Shopkeeper Name:</strong> ପ୍ରଶାନ୍ତ ପ୍ରଧାନ</p>
-            <p><strong>Mobile Number:</strong> 9777752212</p>
-            <p><strong>Mobile Number:</strong> 8249569946</p>
-            <p><strong>Email ID:</strong> tanmayapradhan2171@gmail.com</p>
-            <p><strong>Address:</strong> ଦଳନଇ ବଜାର, ଗୋପ, ପୁରୀ, ଓଡିଶା -752002</p>
+    <section id="shop-details" class="shop-details-section">
+        <h2 data-aos="fade-up" data-aos-duration="800">ଦୋକାନର ବିବରଣୀ</h2>
+        <div class="shop-details-container" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <div class="shop-info">
+                <p><strong>Shopkeeper Name:</strong> ପ୍ରଶାନ୍ତ ପ୍ରଧାନ</p>
+                <p><strong>Mobile Number:</strong> 9777752212</p>
+                <p><strong>Mobile Number:</strong> 8249569946</p>
+                <p><strong>Email ID:</strong> tanmayapradhan2171@gmail.com</p>
+                <p><strong>Address:</strong> ଦଳନଇ ବଜାର, ଗୋପ, ପୁରୀ, ଓଡିଶା -752002</p>
+            </div>
+            <div class="shop-map" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70440.86069037404!2d85.88369863385773!3d19.90701509640555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19956a6c91b39d%3A0x3448e969400de11d!2sJagannath%20enterprises!5e1!3m2!1sen!2sin!4v1756191359272!5m2!1sen!2sin"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
-        <div class="shop-map" data-aos="fade-left">
-            <!-- Google Maps Iframe -->
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70440.86069037404!2d85.88369863385773!3d19.90701509640555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19956a6c91b39d%3A0x3448e969400de11d!2sJagannath%20enterprises!5e1!3m2!1sen!2sin!4v1756191359272!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                width="100%" height="220" style="border:0; border-radius:12px;"
-                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-    </div>
-</section>
-
+    </section>
 
     <!-- About Us Section -->
-  <section id="about" class="about-us" data-aos="flip-right">
-    <h2>ଆମ ବିଷୟରେ</h2>
-    <div class="about-container">
-        <div class="about-text">
-            <h3>ଦୋକାନ ବିଷୟରେ</h3>
-            <p>ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍ ୧୯୯୦ ମସିହାରୁ ଚାଷୀମାନଙ୍କୁ ସେବା ଯୋଗାଉଛି, ଉଚ୍ଚ ଗୁଣବତ୍ତା ସାର ଏବଂ କୀଟନାଶକ ଯୋଗାଇ କୃଷି ଉତ୍ପାଦନକୁ ବୃଦ୍ଧି କରୁଛି। ଆମର ଲକ୍ଷ୍ୟ ହେଉଛି ଚାଷୀମାନଙ୍କୁ ସର୍ବୋତ୍ତମ ଉତ୍ପାଦ ଏବଂ ସେବା ଯୋଗାଇବା।</p>
-            
-            <h3>ପ୍ରତିଷ୍ଠାତାଙ୍କ ବିଷୟରେ</h3>
-            <p>ପ୍ରଶାନ୍ତ ପ୍ରଧାନ ହେଉଛନ୍ତି ଆମର ସ୍ଥାପକ, ଯିଏ କୃଷି କ୍ଷେତ୍ରରେ ୩୦ ବର୍ଷରୁ ଅଧିକ ଅନୁଭବ ରଖିଛନ୍ତି। ସେ ଚାଷୀମାନଙ୍କର ଆବଶ୍ୟକତାକୁ ବୁଝି ସର୍ବୋତ୍ତମ ସମାଧାନ ଯୋଗାଉଛନ୍ତି।</p>
+    <section id="about" class="about-us">
+        <h2 data-aos="fade-up" data-aos-duration="800">ଆମ ବିଷୟରେ</h2>
+        <div class="about-container">
+            <div class="about-text" data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+                <h3>ଦୋକାନ ବିଷୟରେ</h3>
+                <p>ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍ ୧୯୯୦ ମସିହାରୁ ଚାଷୀମାନଙ୍କୁ ସେବା ଯୋଗାଉଛି, ଉଚ୍ଚ ଗୁଣବତ୍ତା ସାର ଏବଂ କୀଟନାଶକ ଯୋଗାଇ କୃଷି ଉତ୍ପାଦନକୁ ବୃଦ୍ଧି କରୁଛି। ଆମର ଲକ୍ଷ୍ୟ ହେଉଛି ଚାଷୀମାନଙ୍କୁ ସର୍ବୋତ୍ତମ ଉତ୍ପାଦ ଏବଂ ସେବା ଯୋଗାଇବା।</p>
+
+                <h3>ପ୍ରତିଷ୍ଠାତାଙ୍କ ବିଷୟରେ</h3>
+                <p>ପ୍ରଶାନ୍ତ ପ୍ରଧାନ ହେଉଛନ୍ତି ଆମର ସ୍ଥାପକ, ଯିଏ କୃଷି କ୍ଷେତ୍ରରେ ୩୦ ବର୍ଷରୁ ଅଧିକ ଅନୁଭବ ରଖିଛନ୍ତି। ସେ ଚାଷୀମାନଙ୍କର ଆବଶ୍ୟକତାକୁ ବୁଝି ସର୍ବୋତ୍ତମ ସମାଧାନ ଯୋଗାଉଛନ୍ତି।</p>
+            </div>
+            <div class="about-photo" data-aos="fade-left" data-aos-delay="300" data-aos-duration="1000">
+                <img src="owner.jpg" alt="Jagannath Enterprises Owner, Prashant Pradhan">
+            </div>
         </div>
-        <div class="about-photo" data-aos="flip-up">
-            <img src="owner.jpg" alt="ମାଲିକର ଫଟୋ">
-        </div>
-    </div>
-</section>
+    </section>
+
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Smooth Scroll
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,      // default duration for animations
+            once: true,          // animate once on scroll
+            mirror: false,       // whether elements should animate out while scrolling past them
+            offset: 120,         // offset (in px) from the original trigger point
+            easing: 'ease-in-out' // default easing for AOS animations
+        });
+
+        // EmailJS Initialization
+        (function(){
+            emailjs.init({
+                publicKey: "YOUR_EMAILJS_PUBLIC_KEY", // <-- IMPORTANT: Replace with your actual EmailJS Public Key
+            });
+        })();
+
+        // Function to send email
+        async function sendMail(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = event.target;
+            const submitBtn = form.querySelector('.btn-submit');
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            const originalButtonText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'ପଠାଉଛି...';
+
+            try {
+                const response = await emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form); // <-- IMPORTANT: Replace with your Service ID and Template ID
+                console.log('SUCCESS!', response.status, response.text);
+                alert('ଆପଣଙ୍କ ମେସେଜ୍ ସଫଳତାର ସହ ପଠାଯାଇଛି! ଆମେ ଶୀଘ୍ର ଆପଣଙ୍କୁ ଯୋଗାଯୋଗ କରିବୁ।');
+                form.reset(); // Clear the form
+            } catch (error) {
+                console.error('FAILED...', error);
+                alert('ମେସେଜ୍ ପଠାଇବାରେ ତ୍ରୁଟି ହୋଇଛି। ଦୟାକରି ପରେ ଚେଷ୍ଟା କରନ୍ତୁ।');
+            } finally {
+                // Re-enable button and restore original text
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = originalButtonText; // Restore original text (e.g., 'ପଠାନ୍ତୁ')
+            }
+        }
+
+        // Smooth Scroll for Navbar links
         document.querySelectorAll('.navbar a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const section = document.querySelector(this.getAttribute('href'));
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                e.preventDefault(); // Prevent default anchor jump
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Calculate offset for fixed navbar
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const offsetPosition = targetElement.offsetTop - navbarHeight - 20; // -20 for a little extra padding
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
         });
 
-        // Form Submission
-        document.getElementById('sendMail').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('ବୁକିଂ ସଫଳ! ଆମେ ଶୀଘ୍ର ଆପଣଙ୍କୁ ଯୋଗାଯୋଗ କରିବୁ।');
-            this.reset();
+        // Blog Post Click Handler
+        document.querySelectorAll('.blog-post.clickable').forEach(function(card) {
+            card.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                if (url) {
+                    window.open(url, '_blank'); // Opens in a new tab
+                }
+            });
+        });
+
+        // Input label animation fix for pre-filled inputs (e.g., browser auto-fill)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.input-group input, .input-group textarea').forEach(input => {
+                if (input.value) {
+                    input.classList.add('valid'); // Add 'valid' class if input has a value
+                }
+                input.addEventListener('input', () => {
+                    if (input.value) {
+                        input.classList.add('valid');
+                    } else {
+                        input.classList.remove('valid');
+                    }
+                });
+            });
         });
     </script>
-
-    <!-- AOS Animation JS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1000, // animation time in ms
-    once: true,     // ek baar hi chalega
-  });
-
-  
-    document.querySelectorAll('.blog-post.clickable').forEach(function(card) {
-        card.addEventListener('click', function() {
-            const url = this.getAttribute('data-url');
-            if (url) {
-                // ନୂଆ ଟ୍ୟାବରେ ଖୋଲିବା ଚାହୁଁଥିଲେ: window.open(url, '_blank');
-                window.location.href = url;           // ସେହି ଟ୍ୟାବରେ ଖୋଲିବ
-                // window.open(url, '_blank');        // ନୂଆ ଟ୍ୟାବରେ ଖୋଲିବ
-            }
-        });
-    });
-
-</script>
-
-
 </body>
 </html>
