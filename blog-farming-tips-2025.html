@@ -11,37 +11,73 @@
     <style>
         :root {
             --primary: #2e7d32;
-            --gradient: linear-gradient(135deg, #1b5e20, #4caf50);
+            --primary-dark: #1b5e20;
+            --primary-light: #66bb6a;
+            --accent: #ffd700;
+            --gradient-main: linear-gradient(135deg, #1b5e20, #4caf50, #66bb6a);
+            --gradient-card: linear-gradient(145deg, #ffffff, #f5f5f5);
             --light-green: #e8f5e9;
-            --card-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            --hover-shadow: 0 25px 50px rgba(46,125,50,0.25);
+            --card-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            --hover-shadow: 0 20px 60px rgba(46,125,50,0.25);
+            --text-dark: #1a1a1a;
+            --text-light: #ffffff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
         
         body {
             font-family: 'Noto Sans Oriya', sans-serif;
-            background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e9 100%);
-            color: #2d3436;
+            background: linear-gradient(180deg, #e8f5e9 0%, #f1f8e9 50%, #e8f5e9 100%);
+            color: var(--text-dark);
             line-height: 1.8;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Particles */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(76,175,80,0.3), transparent);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+            33% { transform: translateY(-100px) translateX(50px) scale(1.1); }
+            66% { transform: translateY(-50px) translateX(-50px) scale(0.9); }
         }
 
         .container {
-            max-width: 1400px;
-            margin: 30px auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 24px;
+            max-width: 1600px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 32px;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 1;
         }
 
-        /* Header */
+        /* Header with Advanced Gradient & Animation */
         .header {
-            background: var(--gradient);
+            background: var(--gradient-main);
             color: white;
-            padding: 60px 40px;
+            padding: 80px 50px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -49,95 +85,191 @@
         .header::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path fill="%23fff" d="M0 50 Q25 20 50 50 T100 50 Q75 80 50 50 T0 50Z"/></svg>') repeat;
-            animation: wave 20s linear infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 40%);
+            animation: rotate 30s linear infinite;
         }
-        @keyframes wave { 0% { background-position: 0 0; } 100% { background-position: 100px 100px; } }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
         .header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 900;
-            margin-bottom: 12px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            text-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
         }
         .header p {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             opacity: 0.95;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        .header-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary-dark);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(255,215,0,0.4);
         }
 
         /* Main Content Area */
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 50% - 50% */
-            gap: 40px;
-            padding: 50px;
+        .content-wrapper {
+            padding: 60px 50px;
         }
 
-        .main-content {
-            padding-right: 20px;
+        .intro-section {
+            background: linear-gradient(135deg, #f8fff8, #e8f5e9);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 50px;
+            border-left: 8px solid var(--primary);
+            box-shadow: var(--card-shadow);
         }
-
-        h2 {
+        .intro-section h2 {
             color: var(--primary);
-            font-size: 2.2rem;
-            margin: 30px 0 20px;
-            position: relative;
-            padding-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
-        h2::after {
+        .intro-section p {
+            font-size: 1.2rem;
+            line-height: 2;
+        }
+
+        /* Tips Section - Modern Card Grid */
+        .tips-section h2 {
+            color: var(--primary);
+            font-size: 2.8rem;
+            margin: 50px 0 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .tips-section h2::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 80px;
-            height: 5px;
-            background: var(--gradient);
+            width: 120px;
+            height: 6px;
+            background: var(--gradient-main);
             border-radius: 3px;
         }
 
-        ul {
-            margin: 25px 0;
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
         }
-        li {
+
+        .tip-card {
             background: white;
-            margin: 18px 0;
-            padding: 18px 22px;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border-left: 6px solid #4caf50;
-            transition: all 0.3s ease;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 6px solid var(--primary-light);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
-        li:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(76,175,80,0.2);
+        .tip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(76,175,80,0.05));
+            opacity: 0;
+            transition: opacity 0.4s;
         }
-        li strong {
+        .tip-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(76,175,80,0.25);
+            border-left-color: var(--accent);
+        }
+        .tip-card:hover::before {
+            opacity: 1;
+        }
+        .tip-card strong {
             color: var(--primary);
-            font-size: 1.1em;
+            font-size: 1.3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .tip-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
         }
 
-        /* Video Section - 50% width, modern card */
-        .video-section {
-            display: flex;
-            flex-direction: column;
-            height: fit-content;
+        /* Video Section - Premium Grid Layout */
+        .videos-section {
+            margin-top: 70px;
+        }
+        .videos-section h2 {
+            color: var(--primary);
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .videos-section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 150px;
+            height: 6px;
+            background: var(--gradient-main);
+            border-radius: 3px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
         }
 
         .video-card {
             background: white;
-            border-radius: 24px;
+            border-radius: 28px;
             overflow: hidden;
             box-shadow: var(--card-shadow);
-            transition: all 0.4s ease;
-            position: sticky;
-            top: 30px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .video-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-main);
+            transform: scaleX(0);
+            transition: transform 0.5s;
         }
         .video-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-15px);
             box-shadow: var(--hover-shadow);
+        }
+        .video-card:hover::before {
+            transform: scaleX(1);
         }
 
         .video-container {
@@ -149,215 +281,378 @@
         }
         .video-container iframe {
             position: absolute;
-            top: 0; left: 0;
+            top: 0; 
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
         }
 
         .video-info {
-            padding: 28px;
-            background: linear-gradient(135deg, #f8fff8, var(--light-green));
+            padding: 35px;
+            background: linear-gradient(145deg, #ffffff, #f8fff8);
         }
         .video-info h3 {
             color: var(--primary);
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             margin-bottom: 15px;
+            line-height: 1.4;
         }
         .video-info p {
-            margin: 12px 0;
+            margin: 15px 0;
             font-size: 1.05rem;
+            line-height: 1.8;
         }
+        .video-info small {
+            color: #666;
+        }
+        
         .tag {
             display: inline-block;
-            background: #4caf50;
+            background: var(--primary);
             color: white;
-            padding: 6px 14px;
+            padding: 8px 18px;
             border-radius: 50px;
             font-size: 0.9rem;
-            margin-top: 10px;
+            margin-top: 15px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(46,125,50,0.3);
         }
 
-        /* Back Button */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9e6, #fffbf0);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 15px;
+            box-shadow: 0 5px 20px rgba(255,215,0,0.2);
+        }
+        .highlight-box h3 {
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Back Button - Ultra Modern */
+        .back-btn-container {
+            text-align: center;
+            padding: 50px;
+        }
         .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin: 40px;
-            padding: 16px 32px;
-            background: var(--gradient);
+            gap: 12px;
+            padding: 18px 40px;
+            background: var(--gradient-main);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 25px rgba(46,125,50,0.3);
-            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(46,125,50,0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .back-btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
         .back-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(46,125,50,0.4);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(46,125,50,0.5);
+        }
+        .back-btn span {
+            position: relative;
+            z-index: 1;
         }
 
         /* Mobile Responsive */
-        @media (max-width: 992px) {
-            .content {
+        @media (max-width: 1200px) {
+            .videos-grid {
                 grid-template-columns: 1fr;
-                padding: 30px;
             }
-            .header h1 { font-size: 2.4rem; }
-            .video-card { position: static; }
         }
-        @media (max-width: 600px) {
-            .header { padding: 40px 20px; }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .header { padding: 60px 30px; }
+            .content-wrapper { padding: 40px 25px; }
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 480px) {
             .header h1 { font-size: 2rem; }
-            .content { padding: 20px; gap: 30px; }
+            .tips-section h2, .videos-section h2 { font-size: 2rem; }
+            .content-wrapper { padding: 30px 20px; }
+        }
+
+        /* Scroll Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
         }
     </style>
 </head>
 <body>
 
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="particle" style="width: 100px; height: 100px; top: 10%; left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: 5s;"></div>
+        <div class="particle" style="width: 80px; height: 80px; top: 80%; left: 20%; animation-delay: 10s;"></div>
+        <div class="particle" style="width: 120px; height: 120px; top: 30%; left: 70%; animation-delay: 7s;"></div>
+    </div>
+
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>ଚାଷ ଟିପ୍ସ 2025</h1>
+            <h1>🌾 ଚାଷ ଟିପ୍ସ 2025 🌾</h1>
             <p>ଉନ୍ନତ ଅମଳ ପାଇଁ ସର୍ବଶେଷ ଓ ବୈଜ୍ଞାନିକ କୌଶଳ</p>
+            <span class="header-badge">✨ ନୂତନ ଟେକ୍ନୋଲୋଜି 2025 ✨</span>
         </div>
 
-        <!-- Main Content + Video Side by Side -->
-        <div class="content">
+        <!-- Main Content -->
+        <div class="content-wrapper">
             
-            <!-- Left Side - Text Content -->
-            <div class="main-content">
-                <h2>2025 ରେ ଚାଷୀମାନଙ୍କ ପାଇଁ ଟପ୍ 10 ଟିପ୍ସ</h2>
-                <ul>
-                    <li><strong>ମାଟି ପରୀକ୍ଷା ବାଧ୍ୟତାମୂଳକ କରନ୍ତୁ</strong> – ପ୍ରତି 2 ବର୍ଷରେ ଥରେ ମାଟି ପରୀକ୍ଷା କରାଇ ସଠିକ୍ ସାର ବ୍ୟବହାର କରନ୍ତୁ।</li>
-                    <li><strong>ଡ୍ରିପ୍ ଇରିଗେସନ୍ ଲଗାନ୍ତୁ</strong> – 40-60% ପାଣି ବଞ୍ଚତ ହେବ ଏବଂ ଅମଳ ବଢ଼ିବ।</li>
-                    <li><strong>ଜୈବିକ ଖତ (ଭର୍ମିକମ୍ପୋଷ୍ଟ) ବ୍ୟବହାର କରନ୍ତୁ</strong> – ମାଟିର ଜୈବିକ ଗୁଣ ବଢ଼ିବ।</li>
-                    <li><strong>ମିଶ୍ର ଚାଷ (Intercropping)</strong> – ଧାନ ସହିତ ମୁଗ/ବିରି ଚାଷ କରି ଅଧିକ ଲାଭ ନେଇପାରିବେ।</li>
-                    <li><strong>ଡ୍ରୋନ୍ ସ୍ପ୍ରେ ବ୍ୟବହାର</strong> – କୀଟନାଶକ ଓ ସାର 90% ସଠିକ୍ ସ୍ଥାନରେ ପହଞ୍ଚିବ।</li>
-                    <li><strong>ହାଇବ୍ରିଡ୍ ଓ ଉନ୍ନତ ଜାତି ବିହନ</strong> – ସ୍ୱର୍ଣ୍ଣ ସୁବର୍ଣ୍ଣ-1, BINA ଧାନ-21 ଆଦି।</li>
-                    <li><strong>ମୋବାଇଲ୍ ଆପ୍ ବ୍ୟବହାର</strong> – Kisan Suvidha, Agri App ରେ ପାଗ ଓ ବଜାର ମୂଲ୍ୟ ଦେଖନ୍ତୁ।</li>
-                    <li><strong>ଫସଲ ବୀମା କରାଇଦିଅନ୍ତୁ</strong> – PMFBY ଅଧୀନରେ ଅଳ୍ପ ପ୍ରିମିୟମ୍ ରେ ସୁରକ୍ଷା।</li>
-                </ul>
-
-                <h2>ଆଗକୁ ଆସୁଛି ନୂଆ ଟେକ୍ନୋଲୋଜି</h2>
-                <p style="font-size:1.1rem; background: #f0f8f0; padding:20px; border-radius:16px; border-left:5px solid #4caf50;">
-                    2025 ସୁଦ୍ଧା ଓଡ଼ିଶାରେ <strong>AI ଭିତ୍ତିକ ଫସଲ ନିରୀକ୍ଷଣ</strong>, ରୋବୋଟିକ୍ ଅମଳ କଟା ଓ ସ୍ମାର୍ଟ ଗ୍ରୀନହାଉସ୍ ଆସିବ। ଏବେ ଠାରୁ ପ୍ରସ୍ତୁତ ରହନ୍ତୁ!
+            <!-- Introduction Section -->
+            <div class="intro-section fade-in">
+                <h2>🚀 ଆଗକୁ ଆସୁଛି ନୂଆ ଟେକ୍ନୋଲୋଜି</h2>
+                <p>
+                    2025 ସୁଦ୍ଧା ଓଡ଼ିଶାରେ <strong>AI ଭିତ୍ତିକ ଫସଲ ନିରୀକ୍ଷଣ</strong>, ରୋବୋଟିକ୍ ଅମଳ କଟା ଓ ସ୍ମାର୍ଟ ଗ୍ରୀନହାଉସ୍ ଆସିବ। 
+                    ଏବେ ଠାରୁ ପ୍ରସ୍ତୁତ ରହନ୍ତୁ ଏବଂ ନିଜର ଚାଷ କ୍ଷେତ୍ରରେ ଡିଜିଟାଲ୍ ବିପ୍ଳବ ଆଣନ୍ତୁ!
                 </p>
             </div>
-</div>
-        <a href="index.html" class="back-btn">← ମୁଖ୍ୟ ପେଜ୍କୁ ଫେରନ୍ତୁ</a>
-    </div>
-            <!-- 1 Right Side - Video (50% width) -->
-            <div class="video-section">
-                <div class="video-card">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/VUn5-s5Yl7c" 
-                                title="ଚାଷ ଟିପ୍ସ 2025" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                  <div class="video-info">
-    <h3>ମୁଗ ଓ ବିରି ଫସଲରେ ପତ୍ରପୋଡା ରୋଗର ପରିଚାଳନା</h3>
-    <p>ଏହି ଭିଡିଓଟି <strong>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</strong> ର ଅଫିସିଆଲ୍ ଚ୍ୟାନେଲ୍‌ରୁ ନିଆଯାଇଛି।</p>
-    <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
-       <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
-    </p>
-    <span class="tag">ଓଡ଼ିଶା ସରକାର</span>
-</div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <a href="index.html" class="back-btn">← ମୁଖ୍ୟ ପେଜ୍କୁ ଫେରନ୍ତୁ</a>
-    </div>
-    <!-- 2 Right Side - Video (50% width) -->
-            <div class="video-section">
-                <div class="video-card">
-                    <div class="video-container">
-                       <iframe width="560" height="315" src="https://www.youtube.com/embed/k-Ok-iKA5Rk?si=e9DsvKMzhCthuRUn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                  <div class="video-info">
-    <h3>ମୁଗ ବିରି ଫସଲରେ ଯାଦୁରା ରୋଗର ପରିଚାଳନା</h3>
-    <p>ଏହି ଭିଡିଓଟି <strong>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</strong> ର ଅଫିସିଆଲ୍ ଚ୍ୟାନେଲ୍‌ରୁ ନିଆଯାଇଛି।</p>
-    <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
-       <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
-    </p>
-    
-    <span class="tag">ଓଡ଼ିଶା ସରକାର </span>
-</div>
-                </div>
-            </div>
-        </div>
-</div>
-        <a href="index.html" class="back-btn">← ମୁଖ୍ୟ ପେଜ୍କୁ ଫେରନ୍ତୁ</a>
-    </div>
-         <!-- 3 Right Side - Video (50% width) -->
-            <div class="video-section">
-                <div class="video-card">
-                    <div class="video-container">
-                       <iframe width="560" height="315" src="https://www.youtube.com/embed/hOxiEVlWrsM?si=PyFZsDnPWcN-kzuZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                  <div class="video-info">
-    <h3>ମଟର ଗଛ ରେ କଳଙ୍ଗୀ ରୋଗର ପରିଚାଳନା</h3>
-    <p>ଏହି ଭିଡିଓଟି <strong>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</strong> ର ଅଫିସିଆଲ୍ ଚ୍ୟାନେଲ୍‌ରୁ ନିଆଯାଇଛି।</p>
-    <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
-       <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
-    </p>
-    
-    <span class="tag">ଓଡ଼ିଶା ସରକାର </span>
-</div>
-                </div>
-            </div>
-        </div>
-        <a href="index.html" class="back-btn">← ମୁଖ୍ୟ ପେଜ୍କୁ ଫେରନ୍ତୁ</a>
-    </div>
-  <!-- 4 Right Side - Video (50% width) -->
-            <div class="video-section">
-                <div class="video-card">
-                    <div class="video-container">
-                     <iframe width="560" height="315" src="https://www.youtube.com/embed/JG3Ma1zm85o?si=6X09FvDso0K3i5jl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                  <div class="video-info">
-    <h3>ବୁଟ ଗଛରେ କଲଙ୍ଗୀ ରୋଗ ପରିଚାଳନା</h3>
-    <p>ଏହି ଭିଡିଓଟି <strong>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</strong> ର ଅଫିସିଆଲ୍ ଚ୍ୟାନେଲ୍‌ରୁ ନିଆଯାଇଛି।</p>
-    <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
-       <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
-    </p>
-    
-    <span class="tag">ଓଡ଼ିଶା ସରକାର </span>
-</div>
-                </div>
-            </div>
-        </div>
-        <a href="index.html" class="back-btn">← ମୁଖ୍ୟ ପେଜ୍କୁ ଫେରନ୍ତୁ</a>
-    </div>
-<!-- 5 Right Side - Video (50% width) -->
-            <div class="video-section">
-                <div class="video-card">
-                    <div class="video-container">
-                     <iframe width="560" height="315" src="https://www.youtube.com/embed/2HugdE8DCuM?si=dKutlcShtpRUVliL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                  <div class="video-info">
-    <h3>ଖେସାରୀ ଗଛରେ ଜଉ ପୋକର ପରିଚାଳନା</h3>
 
+            <!-- Tips Section -->
+            <div class="tips-section">
+                <h2>2025 ରେ ଚାଷୀମାନଙ୍କ ପାଇଁ ଟପ୍ 10 ଟିପ୍ସ</h2>
+                
+                <div class="tips-grid">
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">🧪</div>
+                        <strong>ମାଟି ପରୀକ୍ଷା ବାଧ୍ୟତାମୂଳକ କରନ୍ତୁ</strong>
+                        <p>ପ୍ରତି 2 ବର୍ଷରେ ଥରେ ମାଟି ପରୀକ୍ଷା କରାଇ ସଠିକ୍ ସାର ବ୍ୟବହାର କରନ୍ତୁ। ଏହାଦ୍ୱାରା ଖର୍ଚ୍ଚ କମ୍ ଓ ଉତ୍ପାଦନ ବଢ଼ିବ।</p>
+                    </div>
 
-    <p>ଏହି ଭିଡିଓଟି <strong>କୃଷି ଓ କୃଷକ ସଶକ୍ତିକରଣ ବିଭାଗ, ଓଡ଼ିଶା ସରକାର</strong> ର ଅଫିସିଆଲ୍ ଚ୍ୟାନେଲ୍‌ରୁ ନିଆଯାଇଛି।</p>
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">💧</div>
+                        <strong>ଡ୍ରିପ୍ ଇରିଗେସନ୍ ଲଗାନ୍ତୁ</strong>
+                        <p>40-60% ପାଣି ବଞ୍ଚତ ହେବ ଏବଂ ଅମଳ 25-30% ବଢ଼ିବ। ସରକାରୀ ସବସିଡି ଉପଲବ୍ଧ!</p>
+                    </div>
 
-    <h3>ଏହି ଭିଡିଓରେ ଯେଉଁ ସବୁ କେମିକାଲ ଓ ସାର (chemical & fertilizer) ବିଷୟରେ କୁହାଯାଉଛି, ସେସବୁ ଏବଂ ସମସ୍ତ ପେଷ୍ଟିସାଇଡ୍ (କୀଟନାଶକ) ଆପଣଙ୍କୁ ଆମର ଦୋକାନ ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍ରେ ମିଳିଯିବ।</h3>
-    <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
-        
-       <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
-    </p>
-    
-    <span class="tag">ଓଡ଼ିଶା ସରକା </span>
-</div>
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">🪱</div>
+                        <strong>ଜୈବିକ ଖତ (ଭର୍ମିକମ୍ପୋଷ୍ଟ) ବ୍ୟବହାର କରନ୍ତୁ</strong>
+                        <p>ମାଟିର ଜୈବିକ ଗୁଣ ବଢ଼ିବ ଓ ରାସାୟନିକ ସାର ଉପରେ ନିର୍ଭରଶୀଳତା କମିବ।</p>
+                    </div>
+
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">🌱</div>
+                        <strong>ମିଶ୍ର ଚାଷ (Intercropping)</strong>
+                        <p>ଧାନ ସହିତ ମୁଗ/ବିରି ଚାଷ କରି ଅଧିକ ଲାଭ ନେଇପାରିବେ ଓ ମାଟିର ଉର୍ବରତା ବଜାୟ ରହିବ।</p>
+                    </div>
+
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">🚁</div>
+                        <strong>ଡ୍ରୋନ୍ ସ୍ପ୍ରେ ବ୍ୟବହାର</strong>
+                        <p>କୀଟନାଶକ ଓ ସାର 90% ସଠିକ୍ ସ୍ଥାନରେ ପହଞ୍ଚିବ, ସମୟ ଓ ଶ୍ରମ ବଞ୍ଚିବ।</p>
+                    </div>
+
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">🌾</div>
+                        <strong>ହାଇବ୍ରିଡ୍ ଓ ଉନ୍ନତ ଜାତି ବିହନ</strong>
+                        <p>ସ୍ୱର୍ଣ୍ଣ ସୁବର୍ଣ୍ଣ-1, BINA ଧାନ-21, ଆଦି ଉଚ୍ଚ ଉତ୍ପାଦନଶୀଳ ଜାତି ବ୍ୟବହାର କରନ୍ତୁ।</p>
+                    </div>
+
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">📱</div>
+                        <strong>ମୋବାଇଲ୍ ଆପ୍ ବ୍ୟବହାର</strong>
+                        <p>Kisan Suvidha, Agri App, mKisan ରେ ପାଗ, ବଜାର ମୂଲ୍ୟ ଓ ବିଶେଷଜ୍ଞ ପରାମର୍ଶ ପାଆନ୍ତୁ।</p>
+                    </div>
+
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">🛡️</div>
+                        <strong>ଫସଲ ବୀମା କରାଇଦିଅନ୍ତୁ</strong>
+                        <p>PMFBY ଅଧୀନରେ ଅଳ୍ପ ପ୍ରିମିୟମ୍ ରେ ପ୍ରାକୃତିକ ବିପର୍ଯ୍ୟୟରୁ ସୁରକ୍ଷା ପାଆନ୍ତୁ।</p>
+                    </div>
+
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">🤖</div>
+                        <strong>AI ଓ IoT ଟେକ୍ନୋଲୋଜି</strong>
+                        <p>ସ୍ମାର୍ଟ ସେନ୍ସର୍ ଦ୍ୱାରା ମାଟିର ଆର୍ଦ୍ରତା, ତାପମାନ ଓ pH ସ୍ତର ମନିଟର୍ କରନ୍ତୁ।</p>
+                    </div>
+
+                    <div class="tip-card fade-in">
+                        <div class="tip-card-icon">💰</div>
+                        <strong>ସରକାରୀ ଯୋଜନାର ଲାଭ ନିଅନ୍ତୁ</strong>
+                        <p>PM-KISAN, KCC, ସବସିଡି ସ୍କିମ୍ ଗୁଡ଼ିକର ସଠିକ୍ ସୂଚନା ନିଅନ୍ତୁ ଓ ଆବେଦନ କରନ୍ତୁ।</p>
+                    </div>
                 </div>
             </div>
+
+            <!-- Video Section -->
+            <div class="videos-section">
+                <h2>📺 ବିଶେଷଜ୍ଞ ଭିଡିଓ ଗାଇଡ୍</h2>
+
+                <div class="videos-grid">
+                    
+                    <!-- Video 1 -->
+                    <div class="video-card fade-in">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/VUn5-s5Yl7c" 
+                                    title="ମୁଗ ଓ ବିରି ଫସଲରେ ପତ୍ରପୋଡା ରୋଗର ପରିଚାଳନା" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>ମୁଗ ଓ ବିରି ଫସଲରେ ପତ୍ରପୋଡା ରୋଗର ପରିଚାଳନା</h3>
+                            <p>ପତ୍ରପୋଡା ରୋଗର ଲକ୍ଷଣ, କାରଣ ଏବଂ ପ୍ରଭାବଶାଳୀ ନିୟନ୍ତ୍ରଣ ପଦ୍ଧତି ବିଷୟରେ ବିସ୍ତୃତ ଜାଣନ୍ତୁ।</p>
+                            <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
+                               <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
+                            </p>
+                            <span class="tag">🏛️ ଓଡ଼ିଶା ସରକାର</span>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="video-card fade-in">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/k-Ok-iKA5Rk" 
+                                    title="ମୁଗ ବିରି ଫସଲରେ ଯାଦୁରା ରୋଗର ପରିଚାଳନା" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>ମୁଗ ବିରି ଫସଲରେ ଯାଦୁରା ରୋଗର ପରିଚାଳନା</h3>
+                            <p>ଯାଦୁରା ରୋଗର ପ୍ରାରମ୍ଭିକ ଚିହ୍ନଟ ଓ ଜୈବିକ ତଥା ରାସାୟନିକ ପରିଚାଳନା ବିଧି।</p>
+                            <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
+                               <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
+                            </p>
+                            <span class="tag">🏛️ ଓଡ଼ିଶା ସରକାର</span>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="video-card fade-in">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/hOxiEVlWrsM" 
+                                    title="ମଟର ଗଛ ରେ କଳଙ୍ଗୀ ରୋଗର ପରିଚାଳନା" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>ମଟର ଗଛ ରେ କଳଙ୍ଗୀ ରୋଗର ପରିଚାଳନା</h3>
+                            <p>ମଟର ଫସଲରେ କଳଙ୍ଗୀ ରୋଗର ସମୁଚିତ ପରିଚାଳନା ଏବଂ ପ୍ରତିରୋଧକ ବିଧି।</p>
+                            <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
+                               <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
+                            </p>
+                            <span class="tag">🏛️ ଓଡ଼ିଶା ସରକାର</span>
+                        </div>
+                    </div>
+
+                    <!-- Video 4 -->
+                    <div class="video-card fade-in">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/JG3Ma1zm85o" 
+                                    title="ବୁଟ ଗଛରେ କଲଙ୍ଗୀ ରୋଗ ପରିଚାଳନା" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>ବୁଟ ଗଛରେ କଲଙ୍ଗୀ ରୋଗ ପରିଚାଳନା</h3>
+                            <p>ବୁଟ ଫସଲରେ କଲଙ୍ଗୀ ରୋଗର ଲକ୍ଷଣ ଏବଂ ବୈଜ୍ଞାନିକ ପ୍ରତିକାର ପଦ୍ଧତି।</p>
+                            <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
+                               <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
+                            </p>
+                            <span class="tag">🏛️ ଓଡ଼ିଶା ସରକାର</span>
+                        </div>
+                    </div>
+
+                    <!-- Video 5 -->
+                    <div class="video-card fade-in">
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/2HugdE8DCuM" 
+                                    title="ଖେସାରୀ ଗଛରେ ଜଉ ପୋକର ପରିଚାଳନା" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="video-info">
+                            <h3>ଖେସାରୀ ଗଛରେ ଜଉ ପୋକର ପରିଚାଳନା</h3>
+                            <p>ଜଉ ପୋକର କ୍ଷତି ରୋକିବା ପାଇଁ ସମନ୍ୱିତ କୀଟ ପରିଚାଳନା ବିଧି।</p>
+                            
+                            <div class="highlight-box">
+                                <h3>🛒 ବିଶେଷ ସୂଚନା</h3>
+                                <p>ଏହି ଭିଡିଓରେ ଦର୍ଶାଯାଇଥିବା ସମସ୍ତ କେମିକାଲ୍, ସାର ଓ ପେଷ୍ଟିସାଇଡ୍ ଆପଣଙ୍କୁ <strong>ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍</strong>ରେ ମିଳିଯିବ।</p>
+                            </div>
+                            
+                            <p><strong>କ୍ରେଡିଟ୍:</strong> Department of Agriculture & Farmers' Empowerment, Odisha<br>
+                               <small>ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ © ଓଡ଼ିଶା ସରକାର</small>
+                            </p>
+                            <span class="tag">🏛️ ଓଡ଼ିଶା ସରକାର</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-        <a href="index.html" class="back-btn">← ମୁଖ୍ୟ ପେଜ୍କୁ ଫେରନ୍ତୁ</a>
+
+        <!-- Back Button -->
+        <div class="back-btn-container">
+            <a href="index.html" class="back-btn">
+                <span>← ମୁଖ୍ୟ ପେଜ୍କୁ ଫେରନ୍ତୁ</span>
+            </a>
+        </div>
     </div>
+
+    <script>
+        // Smooth scroll animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.tip-card, .video-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
 </body>
 </html>
