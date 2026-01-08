@@ -3,7 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ଆମ ପ୍ରୋଡକ୍ଟସ୍</title>
+  <title>ଆମ ପ୍ରୋଡକ୍ଟସ୍ | କୃଷି ଦୋକାନ</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     * {
       box-sizing: border-box;
@@ -12,160 +18,601 @@
     }
 
     body {
-      font-family: "Noto Sans Oriya", "Kalinga", sans-serif;
-      background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+      font-family: "Noto Sans Oriya", "Poppins", sans-serif;
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+      min-height: 100vh;
       color: #222;
       padding: 24px;
     }
 
+    /* ===== POPUP STYLES ===== */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .popup-overlay.hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .popup-box {
+      background: linear-gradient(145deg, #ffffff, #f8fff8);
+      border-radius: 24px;
+      padding: 40px 35px;
+      max-width: 480px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      border: 3px solid #4caf50;
+    }
+
+    .popup-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+      display: block;
+    }
+
+    .popup-box h2 {
+      color: #1b5e20;
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .popup-box p {
+      color: #444;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 25px;
+    }
+
+    .popup-box .highlight {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border-left: 4px solid #ff9800;
+    }
+
+    .popup-box .highlight p {
+      margin: 0;
+      color: #e65100;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .popup-close-btn {
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: "Noto Sans Oriya", sans-serif;
+      box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .popup-close-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 35px rgba(46, 125, 50, 0.5);
+    }
+
+    .popup-features {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+
+    .popup-feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .popup-feature span:first-child {
+      font-size: 2rem;
+    }
+
+    .popup-feature span:last-child {
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    /* ===== MAIN CONTENT ===== */
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
     }
 
     header {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 40px;
+      padding: 35px 25px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
-      font-size: 2rem;
-      color: #2e7d32;
-      margin-bottom: 8px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1b5e20;
+      margin-bottom: 12px;
     }
 
     header p {
-      color: #444;
+      color: #555;
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Price Notice Banner */
+    .price-notice {
+      background: linear-gradient(135deg, #fff8e1, #ffecb3);
+      border: 2px dashed #ffa000;
+      border-radius: 16px;
+      padding: 18px 25px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .price-notice span:first-child {
+      font-size: 2rem;
+    }
+
+    .price-notice p {
+      color: #e65100;
+      font-weight: 600;
       font-size: 1rem;
+      margin: 0;
     }
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
     }
 
     .card {
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       text-align: center;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #4caf50, #8bc34a, #cddc39);
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 30px rgba(46, 125, 50, 0.2);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 60px rgba(46, 125, 50, 0.25);
     }
 
     .thumb {
       width: 100%;
-      height: 180px;
+      height: 200px;
       overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, #f5f5f5, #e8f5e9);
     }
 
     .thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
+    }
+
+    .thumb img.error {
+      display: none;
+    }
+
+    .thumb .placeholder {
+      display: none;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .thumb img.error + .placeholder {
+      display: flex;
     }
 
     .card:hover .thumb img {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
     .info {
-      padding: 14px 10px;
+      padding: 22px 18px 26px;
     }
 
     .info h3 {
       color: #1b5e20;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-      font-weight: bold;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      font-weight: 600;
     }
 
     .info p {
       color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 10px;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      line-height: 1.7;
+      min-height: 50px;
+    }
+
+    .price-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
     }
 
     .price {
-      background: #2e7d32;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
       color: white;
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      font-family: "Poppins", sans-serif;
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.35);
+      transition: all 0.3s ease;
     }
 
-    @media (max-width: 500px) {
-      header h1 { font-size: 1.6rem; }
+    .price::before {
+      content: '≈';
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .price-note {
+      font-size: 0.75rem;
+      color: #888;
+      font-style: italic;
+    }
+
+    .card:hover .price {
+      transform: scale(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: linear-gradient(135deg, #ff5722, #ff7043);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 10;
+      box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+    }
+
+    .badge.organic {
+      background: linear-gradient(135deg, #4caf50, #66bb6a);
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    }
+
+    .badge.new {
+      background: linear-gradient(135deg, #2196f3, #42a5f5);
+      box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+    }
+
+    footer p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    footer .contact {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    footer .contact a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { 
+        font-size: 1.9rem; 
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+      .popup-box {
+        padding: 30px 20px;
+      }
+      .popup-box h2 {
+        font-size: 1.4rem;
+      }
+      .popup-icon {
+        font-size: 4rem;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- ===== PRICE POPUP ===== -->
+  <div class="popup-overlay" id="pricePopup">
+    <div class="popup-box">
+      <span class="popup-icon">📢</span>
+      <h2>ମୂଲ୍ୟ ସମ୍ପର୍କରେ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ସୂଚନା</h2>
+      <p>
+        ପ୍ରିୟ ଗ୍ରାହକ, ଆମ ଦୋକାନରେ ପ୍ରୋଡକ୍ଟର ମୂଲ୍ୟ <strong>ବଜାର ଚାହିଦା</strong> ଅନୁସାରେ ସବୁବେଳେ ବଦଳୁଥାଏ।
+      </p>
+      
+      <div class="popup-features">
+        <div class="popup-feature">
+          <span>📈</span>
+          <span>ମୂଲ୍ୟ ବୃଦ୍ଧି</span>
+        </div>
+        <div class="popup-feature">
+          <span>📉</span>
+          <span>ମୂଲ୍ୟ ହ୍ରାସ</span>
+        </div>
+        <div class="popup-feature">
+          <span>🔄</span>
+          <span>ପ୍ରତିଦିନ ଅପଡେଟ୍</span>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <p>⚠️ ଦେଖାଯାଇଥିବା ମୂଲ୍ୟ ଆନୁମାନିକ ଅଟେ। ସଠିକ୍ ମୂଲ୍ୟ ପାଇଁ ଆମକୁ ସମ୍ପର୍କ କରନ୍ତୁ!</p>
+      </div>
+
+      <button class="popup-close-btn" onclick="closePopup()">
+        ✓ ମୁଁ ବୁଝିଲି
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
   <div class="container">
     <header>
-      <h1>🌾 ଆମ ପ୍ରୋଡକ୍ଟସ୍ 🌾</h1>
-      <p>ନିମ୍ନରେ ଆମ ଦୋକାନର ସର୍ବଶ୍ରେଷ୍ଠ କୃଷି ସମ୍ବନ୍ଧୀୟ ପ୍ରୋଡକ୍ଟଗୁଡିକ ଦେଖନ୍ତୁ ଓ ନିଜ ପସନ୍ଦର ପ୍ରୋଡକ୍ଟ ବାଛନ୍ତୁ।</p>
+      <h1>🌾 ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍ 🌾</h1>
+      <p>ନିମ୍ନରେ ଆମ ଦୋକାନର ସର୍ବଶ୍ରେଷ୍ଠ କୃଷି ସାର ଓ ଜୈବିକ ଉତ୍ପାଦ ଦେଖନ୍ତୁ। ଆପଣଙ୍କ ଫସଲ ପାଇଁ ସର୍ବୋତ୍ତମ ବାଛନ୍ତୁ!</p>
     </header>
+
+    <!-- Price Notice Banner -->
+    <div class="price-notice">
+      <span>💡</span>
+      <p>ମୂଲ୍ୟ ବଜାର ଅନୁସାରେ ପ୍ରତିଦିନ ବଦଳେ। ଆଜିର ସଠିକ୍ ମୂଲ୍ୟ ଜାଣିବା ପାଇଁ ଆମକୁ ଫୋନ୍ କରନ୍ତୁ!</p>
+    </div>
 
     <section class="products-grid">
       <!-- Product 1 -->
       <div class="card">
+        <span class="badge">ବେଷ୍ଟ ସେଲର</span>
         <div class="thumb">
-          <img src="gromer.webp" alt="Gromor 28-28-0">
+          <img src="gromer.webp" alt="Gromor 28-28-0" onerror="this.classList.add('error')">
+          <div class="placeholder">🌿</div>
         </div>
         <div class="info">
           <h3>Gromor 28-28-0</h3>
           <p>ଯାହା ଫସଲକୁ ତୁରନ୍ତ ଏବଂ ଦୀର୍ଘସ୍ଥାୟୀ ସବୁଜତା ଦେଇଥାଏ।</p>
-          <div class="price">₹ 1000**</div>
+          <div class="price-wrapper">
+            <div class="price">₹ 1,000+</div>
+            <span class="price-note">*ବଜାର ଅନୁସାରେ ବଦଳେ</span>
+          </div>
         </div>
       </div>
 
       <!-- Product 2 -->
       <div class="card">
         <div class="thumb">
-          <img src="dap.webp" alt="DAP">
+          <img src="dap.webp" alt="DAP" onerror="this.classList.add('error')">
+          <div class="placeholder">🧪</div>
         </div>
         <div class="info">
           <h3>DAP 18-46-0</h3>
-          <p>ଏହା ଫସଲକୁ ତୁରନ୍ତ ଏବଂ ଦୀର୍ଘସ୍ଥାୟୀ ସବୁଜତା ଦେଇଥାଏ।</p>
-          <div class="price">₹ 1000**</div>
+          <p>ଏହା ଫସଲକୁ ଫସଫରସ୍ ଯୋଗାଇ ଶିକଡ଼ ମଜବୁତ କରେ।</p>
+          <div class="price-wrapper">
+            <div class="price">₹ 1,350+</div>
+            <span class="price-note">*ବଜାର ଅନୁସାରେ ବଦଳେ</span>
+          </div>
         </div>
       </div>
 
       <!-- Product 3 -->
       <div class="card">
+        <span class="badge new">ନୂଆ</span>
         <div class="thumb">
-          <img src="mop.webp" alt="patas">
+          <img src="mop.webp" alt="MOP Potash" onerror="this.classList.add('error')">
+          <div class="placeholder">🌱</div>
         </div>
         <div class="info">
-          <h3></h3>
+          <h3>MOP ପଟାସ୍ (0-0-60)</h3>
           <p>ଯାହା ଫଳ ଓ ପରିବାର ରଙ୍ଗ, ସ୍ବାଦ ଏବଂ ସଂରକ୍ଷଣ ଗୁଣ ବଢ଼ାଏ।</p>
-          <div class="price">₹ 1000**</div>
+          <div class="price-wrapper">
+            <div class="price">₹ 1,100+</div>
+            <span class="price-note">*ବଜାର ଅନୁସାରେ ବଦଳେ</span>
+          </div>
         </div>
       </div>
 
       <!-- Product 4 -->
       <div class="card">
+        <span class="badge organic">ଜୈବିକ</span>
         <div class="thumb">
-          <img src="sms.jpg" alt="biofertilizer">
+          <img src="sms.jpg" alt="SMS Gold Biofertilizer" onerror="this.classList.add('error')">
+          <div class="placeholder">🍃</div>
         </div>
         <div class="info">
-          <h3>SMS gold</h3>
-          <p>ଜୈବିକ ସାର</p>
-          <div class="price">₹ 599**</div>
+          <h3>SMS Gold</h3>
+          <p>ଜୈବିକ ସାର - ମାଟିର ସ୍ୱାସ୍ଥ୍ୟ ଓ ଉର୍ବରତା ବୃଦ୍ଧି କରେ।</p>
+          <div class="price-wrapper">
+            <div class="price">₹ 599+</div>
+            <span class="price-note">*ବଜାର ଅନୁସାରେ ବଦଳେ</span>
+          </div>
         </div>
       </div>
 
-     
+      <!-- Product 5 -->
+      <div class="card">
+        <div class="thumb">
+          <img src="urea.png" alt="Urea" onerror="this.classList.add('error')">
+          <div class="placeholder">🌾</div>
+        </div>
+        <div class="info">
+          <h3>ୟୁରିଆ 46-0-0</h3>
+          <p>ନାଇଟ୍ରୋଜେନ ଭରପୂର ସାର, ଫସଲର ଦ୍ରୁତ ବୃଦ୍ଧି ପାଇଁ।</p>
+          <div class="price-wrapper">
+            <div class="price">₹ 270+</div>
+            <span class="price-note">*ବଜାର ଅନୁସାରେ ବଦଳେ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="card">
+        <span class="badge">ପ୍ରିମିୟମ</span>
+        <div class="thumb">
+          <img src="mop.webp" alt="NPK Complex" onerror="this.classList.add('error')">
+          <div class="placeholder">⚗️</div>
+        </div>
+        <div class="info">
+          <h3>NPK Complex 12-32-16</h3>
+          <p>ସମ୍ପୂର୍ଣ୍ଣ ପୋଷକ ତତ୍ୱ ଯୁକ୍ତ ମିଶ୍ରିତ ସାର।</p>
+          <div class="price-wrapper">
+            <div class="price">₹ 1,350+</div>
+            <span class="price-note">*ବଜାର ଅନୁସାରେ ବଦଳେ</span>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <footer>
+      <p>⚠️ ଉପରେ ଦେଖାଯାଇଥିବା ସମସ୍ତ ମୂଲ୍ୟ <strong>ଆନୁମାନିକ</strong> ଅଟେ। ବଜାର ଚାହିଦା ଅନୁସାରେ ମୂଲ୍ୟ ବୃଦ୍ଧି ବା ହ୍ରାସ ହୋଇପାରେ।</p>
+      <div class="contact">
+        <a href="tel:+919777752212">📞 +91 97777 52212</a>
+        <a href="https://wa.me/919777752212">💬 WhatsApp</a>
+      </div>
+      <p style="margin-top: 15px; font-size: 0.85rem; color: #888;">© 2025 ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ</p>
+    </footer>
   </div>
+
+  <script>
+    // Close popup function
+    function closePopup() {
+      document.getElementById('pricePopup').classList.add('hidden');
+      // Save to localStorage so popup doesn't show again in same session
+      sessionStorage.setItem('pricePopupShown', 'true');
+    }
+
+    // Check if popup was already shown
+    window.onload = function() {
+      if (sessionStorage.getItem('pricePopupShown')) {
+        document.getElementById('pricePopup').classList.add('hidden');
+      }
+    }
+
+    // Close popup when clicking outside
+    document.getElementById('pricePopup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePopup();
+      }
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePopup();
+      }
+    });
+  </script>
 </body>
 </html>
