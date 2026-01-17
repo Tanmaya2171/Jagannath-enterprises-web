@@ -42,63 +42,93 @@
         }
 
         /* Navbar Styles */
-        .navbar {
-            background: linear-gradient(to right, var(--dark-green-gradient-start), var(--dark-green-gradient-end));
-            color: var(--white);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transition: background 0.4s ease, padding 0.4s ease;
-        }
+       /* === Aesthetic Green Glassmorphism Navbar === */
 
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-            margin: 0; /* Ensure no default margin */
-            padding: 0; /* Ensure no default padding */
-        }
+:root {
+    --gradient-start: #0a2f1f;         /* deep emerald black-green */
+    --gradient-end:   #1a4a38;         /* richer forest green */
+    --glass-bg:       rgba(20, 45, 35, 0.68);
+    --accent-green:   #34d399;         /* vibrant but elegant teal-green */
+    --text:           #f1f5f3;         /* soft off-white for contrast */
+}
 
-        .navbar a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.6rem 1.2rem;
-            transition: all 0.3s ease-in-out;
-            border-radius: 25px;
-            letter-spacing: 0.5px;
-            position: relative; /* For underline effect */
-            overflow: hidden;
-        }
+.navbar {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: var(--text);
+    padding: 1.2rem 3rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(52, 211, 153, 0.12);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+    letter-spacing: 0.4px;
+}
 
-        .navbar a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--secondary-green);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-out;
-        }
+.navbar.scrolled {
+    padding: 0.8rem 3rem;
+    background: linear-gradient(135deg, rgba(10, 35, 25, 0.95), rgba(20, 50, 40, 0.95));
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px);
+}
 
-        .navbar a:hover::before {
-            transform: translateX(0);
-        }
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
 
-        .navbar a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px); /* Slight lift on hover */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
+.navbar a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;               /* balanced — not too bold */
+    font-size: 1.05rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Elegant animated underline with gradient */
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2.5px;
+    bottom: 6px;
+    left: 50%;
+    background: linear-gradient(to right, var(--accent-green), #10b981);
+    border-radius: 3px;
+    transition: all 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transform: translateX(-50%);
+}
+
+.navbar a:hover::after,
+.navbar a.active::after {
+    width: 70%;
+}
+
+.navbar a:hover {
+    color: #e0f7fa;                 /* slight cyan lift for premium feel */
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 20px rgba(52, 211, 153, 0.18);
+    text-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+}
+
+/* Optional: active/current page indicator */
+.navbar a.active {
+    background: rgba(52, 211, 153, 0.15);
+    color: var(--accent-green);
+}
 
         /* Banner Section */
         .banner {
