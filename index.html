@@ -6,7 +6,7 @@
     <title>Jagannath Enterprises - Fertilizers & Pesticides</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Odia:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -42,94 +42,67 @@
         }
 
         /* Navbar Styles */
-       /* === Aesthetic Green Glassmorphism Navbar === */
-
-:root {
-    --gradient-start: #0a2f1f;         /* deep emerald black-green */
-    --gradient-end:   #1a4a38;         /* richer forest green */
-    --glass-bg:       rgba(20, 45, 35, 0.68);
-    --accent-green:   #34d399;         /* vibrant but elegant teal-green */
-    --text:           #f1f5f3;         /* soft off-white for contrast */
-}
-
-.navbar {
-    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    color: var(--text);
-    padding: 1.2rem 3rem;
+       .navbar {
+    background: rgba(15, 35, 25, 0.65);       /* dark transparent green */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: white;
+    padding: 1.1rem 2.5rem;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    border-bottom: 1px solid rgba(52, 211, 153, 0.12);
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
-    letter-spacing: 0.4px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.4s ease;
 }
 
 .navbar.scrolled {
-    padding: 0.8rem 3rem;
-    background: linear-gradient(135deg, rgba(10, 35, 25, 0.95), rgba(20, 50, 40, 0.95));
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(16px);
+    padding: 0.7rem 2.5rem;
+    background: rgba(10, 25, 18, 0.92);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.25);
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 2.5rem;
+    gap: 2.2rem;
     margin: 0;
     padding: 0;
     align-items: center;
 }
 
 .navbar a {
-    color: var(--text);
+    color: white;
     text-decoration: none;
-    font-weight: 500;               /* balanced — not too bold */
-    font-size: 1.05rem;
-    padding: 0.55rem 1.1rem;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.25s ease;
     position: relative;
-    overflow: hidden;
 }
 
-/* Elegant animated underline with gradient */
 .navbar a::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2.5px;
-    bottom: 6px;
+    height: 2px;
+    bottom: 4px;
     left: 50%;
-    background: linear-gradient(to right, var(--accent-green), #10b981);
-    border-radius: 3px;
-    transition: all 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
-    transform: translateX(-50%);
+    background: var(--secondary-green, #4ade80);
+    transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .navbar a:hover::after,
 .navbar a.active::after {
-    width: 70%;
+    width: 60%;
+    left: 20%;
 }
 
 .navbar a:hover {
-    color: #e0f7fa;                 /* slight cyan lift for premium feel */
-    background: rgba(255, 255, 255, 0.06);
-    transform: translateY(-1.5px);
-    box-shadow: 0 4px 20px rgba(52, 211, 153, 0.18);
-    text-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-1px);
 }
-
-/* Optional: active/current page indicator */
-.navbar a.active {
-    background: rgba(52, 211, 153, 0.15);
-    color: var(--accent-green);
-}
-
         /* Banner Section */
         .banner {
             position: relative;
@@ -905,6 +878,7 @@
     <!-- AOS Animation JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        
         // Initialize AOS
         AOS.init({
             duration: 1000,      // default duration for animations
@@ -923,33 +897,41 @@
 
         // Function to send email
         async function sendMail(event) {
-            event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); // Form submit rok do
 
-            const form = event.target;
-            const submitBtn = form.querySelector('.btn-submit');
+    const form = event.target;
+    const submitBtn = form.querySelector('.btn-submit');
 
-            // Disable button and show loading state
-            submitBtn.disabled = true;
-            submitBtn.classList.add('loading');
-            const originalButtonText = submitBtn.innerHTML;
-            submitBtn.innerHTML = 'ପଠାଉଛି...';
+    // Button loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = 'ପଠାଉଛି...';
 
-            try {
-                const response = await emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form); // <-- IMPORTANT: Replace with your Service ID and Template ID
-                console.log('SUCCESS!', response.status, response.text);
-                alert('ଆପଣଙ୍କ ମେସେଜ୍ ସଫଳତାର ସହ ପଠାଯାଇଛି! ଆମେ ଶୀଘ୍ର ଆପଣଙ୍କୁ ଯୋଗାଯୋଗ କରିବୁ।');
-                form.reset(); // Clear the form
-            } catch (error) {
-                console.error('FAILED...', error);
-                alert('ମେସେଜ୍ ପଠାଇବାରେ ତ୍ରୁଟି ହୋଇଛି। ଦୟାକରି ପରେ ଚେଷ୍ଟା କରନ୍ତୁ।');
-            } finally {
-                // Re-enable button and restore original text
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('loading');
-                submitBtn.innerHTML = originalButtonText; // Restore original text (e.g., 'ପଠାନ୍ତୁ')
+    try {
+        // IMPORTANT: Replace these with YOUR actual values from EmailJS dashboard
+        const response = await emailjs.sendForm(
+            'YOUR_SERVICE_ID',          // Service ID (service_xxxxxx)
+            'YOUR_TEMPLATE_ID',         // Template ID (template_xxxxxx)
+            form,                       // HTML form element
+            {
+                publicKey: 'YOUR_PUBLIC_KEY'  // ← Yeh sabse important! Dashboard → Account → Public Key
             }
-        }
+        );
 
+        console.log('SUCCESS!', response.status, response.text);
+        alert('ଆପଣଙ୍କ ମେସେଜ୍ ସଫଳତାର ସହ ପଠାଯାଇଛି! ଆମେ ଶୀଘ୍ର ଆପଣଙ୍କୁ ଯୋଗାଯୋଗ କରିବୁ।');
+        form.reset(); // Form clear kar do
+    } catch (error) {
+        console.error('FAILED...', error);
+        alert('ମେସେଜ୍ ପଠାଇବାରେ ତ୍ରୁଟି ହୋଇଛି। ଦୟାକରି ପରେ ଚେଷ୍ଟା କରନ୍ତୁ। (Error: ' + (error.text || 'Unknown') + ')');
+    } finally {
+        // Button wapas normal
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = originalText; // 'ପଠାନ୍ତୁ' wapas laao
+    }
+}
         // Smooth Scroll for Navbar links
         document.querySelectorAll('.navbar a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+        }
+
+        /* POPUP */
+        #popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popup-box {
+            background: #2d2d44;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 350px;
+            margin: 20px;
+            border: 2px solid #00ff88;
+        }
+
+        .popup-box h2 {
+            color: #00ff88;
+            margin-bottom: 15px;
+        }
+
+        .popup-box p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .popup-box button {
+            background: #00ff88;
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* HEADER */
+        .header {
+            background: #2d2d44;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid #00ff88;
+        }
+
+        .header h1 {
+            color: #00ff88;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .call-btn {
+            display: inline-block;
+            background: #00ff88;
+            color: black;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* PRODUCTS */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #00ff88;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        .category {
+            background: #2d2d44;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 20px 0 15px;
+            color: #00ff88;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #2d2d44;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #444;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 150px;
+            background: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ff88;
+            font-size: 40px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-body h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .card-body .brand {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .card-body .desc {
+            color: #aaa;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .card-body .price {
+            color: #00ff88;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .card-body a {
+            display: inline-block;
+            background: #00ff88;
+            color: black;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            float: right;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #2d2d44;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+            border-top: 2px solid #00ff88;
+        }
+
+        .footer h2 {
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .footer .big-call {
+            display: inline-block;
+            background: #00ff88;
+            color: black;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* FLOATING BUTTON */
+        .float-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- POPUP -->
+    <div id="popup">
+        <div class="popup-box">
+            <h2>⚠️ ସୂଚନା</h2>
+            <p>
+                ଏଠାରେ ଦେଖାଯାଇଥିବା ସମସ୍ତ ଉତ୍ପାଦର <b style="color:#ff6b6b;">ମୂଲ୍ୟ ବଜାର ଅନୁସାରେ ବଦଳେ</b>।<br><br>
+                ଅର୍ଡର ପାଇଁ ଆମକୁ କଲ୍ କରନ୍ତୁ!
+            </p>
+            <button onclick="document.getElementById('popup').style.display='none'">
+                ବୁଝିଗଲି ✓
+            </button>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>🙏 ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍</h1>
+        <p>ଡେଲାଙ୍ଗ, ପୁରୀ, ଓଡ଼ିଶା</p>
+        <a href="tel:9777752212" class="call-btn">📞 9777752212</a>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="container">
+        
+        <h2 class="section-title">🧪 ଆମର ଉତ୍ପାଦ</h2>
+
+        <!-- INSECTICIDES -->
+        <div class="category">🐛 କୀଟନାଶକ</div>
+        
+        <div class="products">
+            
+            <div class="card">
+                <div class="card-img">🧴</div>
+                <div class="card-body">
+                    <h3>ଇମିଡାକ୍ଲୋପ୍ରିଡ୍ 17.8% SL</h3>
+                    <p class="brand">ବେୟାର - କନଫିଡର</p>
+                    <p class="desc">ଧଳା ମାଛି, ଏଫିଡ୍ ପାଇଁ | 250ml</p>
+                    <span class="price">₹350+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧴</div>
+                <div class="card-body">
+                    <h3>କ୍ଲୋରପାଇରିଫସ୍ 20% EC</h3>
+                    <p class="brand">ଡାଉ - ଡର୍ସବାନ</p>
+                    <p class="desc">ଉଇ, ଗୋଡ଼ ପୋକ ପାଇଁ | 1 ଲିଟର</p>
+                    <span class="price">₹280+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧴</div>
+                <div class="card-body">
+                    <h3>ଥିଆମେଥୋକ୍ସାମ 25% WG</h3>
+                    <p class="brand">ସିଞ୍ଜେଣ୍ଟା - ଆକ୍ଟାରା</p>
+                    <p class="desc">ରସ ଚୋଷା ପୋକ ପାଇଁ | 100gm</p>
+                    <span class="price">₹750+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧴</div>
+                <div class="card-body">
+                    <h3>ଫିପ୍ରୋନିଲ 5% SC</h3>
+                    <p class="brand">ବିଏଏସଏଫ - ରିଜେଣ୍ଟ</p>
+                    <p class="desc">ଗୋଡ଼ ପୋକ, ହପର ପାଇଁ | 100ml</p>
+                    <span class="price">₹580+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧴</div>
+                <div class="card-body">
+                    <h3>ଲାମ୍ବଡା ସାଇହାଲୋଥ୍ରିନ 5%</h3>
+                    <p class="brand">ସିଞ୍ଜେଣ୍ଟା - କରାଟେ</p>
+                    <p class="desc">ଦ୍ରୁତ ଆକ୍ସନ | 250ml</p>
+                    <span class="price">₹320+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧴</div>
+                <div class="card-body">
+                    <h3>ଆସେଫେଟ 75% SP</h3>
+                    <p class="brand">ୟୁପିଏଲ - ଆସାଟାଫ</p>
+                    <p class="desc">ଜାସିଡ, ଏଫିଡ ପାଇଁ | 500gm</p>
+                    <span class="price">₹450+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FUNGICIDES -->
+        <div class="category">🍄 ଛତୁନାଶକ</div>
+        
+        <div class="products">
+            
+            <div class="card">
+                <div class="card-img">🧪</div>
+                <div class="card-body">
+                    <h3>ମାନକୋଜେବ 75% WP</h3>
+                    <p class="brand">ଇଣ୍ଡୋଫିଲ - M-45</p>
+                    <p class="desc">ବ୍ଲାଇଟ ନିୟନ୍ତ୍ରଣ | 500gm</p>
+                    <span class="price">₹280+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧪</div>
+                <div class="card-body">
+                    <h3>କାର୍ବେଣ୍ଡାଜିମ 50% WP</h3>
+                    <p class="brand">ବିଏଏସଏଫ - ବାଭିଷ୍ଟିନ</p>
+                    <p class="desc">ବ୍ଲାଷ୍ଟ ପାଇଁ | 500gm</p>
+                    <span class="price">₹350+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧪</div>
+                <div class="card-body">
+                    <h3>ପ୍ରୋପିକୋନାଜୋଲ 25% EC</h3>
+                    <p class="brand">ସିଞ୍ଜେଣ୍ଟା - ଟିଲ୍ଟ</p>
+                    <p class="desc">ରଷ୍ଟ ପାଇଁ | 250ml</p>
+                    <span class="price">₹680+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧪</div>
+                <div class="card-body">
+                    <h3>ଟ୍ରାଇସାଇକ୍ଲାଜୋଲ 75% WP</h3>
+                    <p class="brand">ଡାଉ - ବିମ</p>
+                    <p class="desc">ଧାନ ବ୍ଲାଷ୍ଟ ପାଇଁ | 120gm</p>
+                    <span class="price">₹550+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧪</div>
+                <div class="card-body">
+                    <h3>ହେକ୍ସାକୋନାଜୋଲ 5% EC</h3>
+                    <p class="brand">ରାଲିସ - କଣ୍ଟାଫ</p>
+                    <p class="desc">ସିଥ୍ ବ୍ଲାଇଟ ପାଇଁ | 250ml</p>
+                    <span class="price">₹420+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🧪</div>
+                <div class="card-body">
+                    <h3>କପର ଅକ୍ସିକ୍ଲୋରାଇଡ 50%</h3>
+                    <p class="brand">ଇଣ୍ଡୋଫିଲ - ବ୍ଲିଟକ୍ସ</p>
+                    <p class="desc">ବହୁ-ଉଦ୍ଦେଶ୍ୟ | 500gm</p>
+                    <span class="price">₹320+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- HERBICIDES -->
+        <div class="category">🌱 ତୃଣନାଶକ</div>
+        
+        <div class="products">
+            
+            <div class="card">
+                <div class="card-img">🌿</div>
+                <div class="card-body">
+                    <h3>ଗ୍ଲାଇଫୋସେଟ 41% SL</h3>
+                    <p class="brand">ମନସାଣ୍ଟୋ - ରାଉଣ୍ଡଅପ</p>
+                    <p class="desc">ସମ୍ପୂର୍ଣ୍ଣ ତୃଣ ନାଶକ | 1 ଲିଟର</p>
+                    <span class="price">₹480+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🌿</div>
+                <div class="card-body">
+                    <h3>ବିସପାଇରିବାକ ସୋଡିୟମ 10%</h3>
+                    <p class="brand">ୟୁପିଏଲ - ନମିନି ଗୋଲ୍ଡ</p>
+                    <p class="desc">ଧାନ ପାଇଁ ଲୋକପ୍ରିୟ | 100ml</p>
+                    <span class="price">₹650+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🌿</div>
+                <div class="card-body">
+                    <h3>ପେଣ୍ଡିମେଥାଲିନ 30% EC</h3>
+                    <p class="brand">ବିଏଏସଏଫ - ଷ୍ଟମ୍ପ</p>
+                    <p class="desc">ପ୍ରି-ଇମର୍ଜେନ୍ସ | 1 ଲିଟର</p>
+                    <span class="price">₹550+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🌿</div>
+                <div class="card-body">
+                    <h3>ପ୍ରିଟିଲାକ୍ଲୋର 50% EC</h3>
+                    <p class="brand">ସିଞ୍ଜେଣ୍ଟା - ରିଫିଟ</p>
+                    <p class="desc">ଧାନ ପାଇଁ ସର୍ବୋତ୍ତମ | 500ml</p>
+                    <span class="price">₹620+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🌿</div>
+                <div class="card-body">
+                    <h3>2,4-D ଆମାଇନ ସଲ୍ଟ 58%</h3>
+                    <p class="brand">ଧାନୁକା - ୱିଡମାର</p>
+                    <p class="desc">ବ୍ରଡଲିଫ ତୃଣ ପାଇଁ | 1 ଲିଟର</p>
+                    <span class="price">₹320+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🌿</div>
+                <div class="card-body">
+                    <h3>ବୁଟାକ୍ଲୋର 50% EC</h3>
+                    <p class="brand">ମନସାଣ୍ଟୋ - ମାଚେଟ</p>
+                    <p class="desc">ଘାସ ତୃଣ ନିୟନ୍ତ୍ରଣ | 1 ଲିଟର</p>
+                    <span class="price">₹380+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ORGANIC -->
+        <div class="category">🌿 ଜୈବିକ ଉତ୍ପାଦ</div>
+        
+        <div class="products">
+            
+            <div class="card">
+                <div class="card-img">🍃</div>
+                <div class="card-body">
+                    <h3>ନିମ୍ବ ତେଲ</h3>
+                    <p class="brand">ପ୍ରାକୃତିକ - ଶୁଦ୍ଧ ନିମ୍ବ</p>
+                    <p class="desc">100% ଜୈବିକ | 1 ଲିଟର</p>
+                    <span class="price">₹450+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🍃</div>
+                <div class="card-body">
+                    <h3>ଟ୍ରାଇକୋଡର୍ମା ଭିରିଡି</h3>
+                    <p class="brand">ବାୟୋ - ଟ୍ରାଇକୋଗାର୍ଡ</p>
+                    <p class="desc">ମାଟି ରୋଗ ପାଇଁ | 1 କେଜି</p>
+                    <span class="price">₹320+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🍃</div>
+                <div class="card-body">
+                    <h3>ହ୍ୟୁମିକ ଏସିଡ 12%</h3>
+                    <p class="brand">ଅର୍ଗାନିକ - ହ୍ୟୁମିମ୍ୟାକ୍ସ</p>
+                    <p class="desc">ମାଟି ସୁଧାର ପାଇଁ | 1 ଲିଟର</p>
+                    <span class="price">₹420+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🍃</div>
+                <div class="card-body">
+                    <h3>ବିଉଭେରିଆ ବାସିଆନା</h3>
+                    <p class="brand">ବାୟୋ - ମାଇକୋକିଲ</p>
+                    <p class="desc">ଜୈବ-କୀଟନାଶକ | 1 କେଜି</p>
+                    <span class="price">₹380+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🍃</div>
+                <div class="card-body">
+                    <h3>ସ୍ୟୁଡୋମୋନାସ</h3>
+                    <p class="brand">ବାୟୋ - ସ୍ୟୁଡୋଗାର୍ଡ</p>
+                    <p class="desc">ମୂଳ ରୋଗ ପାଇଁ | 1 କେଜି</p>
+                    <span class="price">₹350+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">🍃</div>
+                <div class="card-body">
+                    <h3>ସିୱିଡ ଏକ୍ସଟ୍ରାକ୍ଟ</h3>
+                    <p class="brand">ଅର୍ଗାନିକ - ସିମ୍ୟାକ୍ସ</p>
+                    <p class="desc">ବୃଦ୍ଧି ପ୍ରୋମୋଟର | 1 ଲିଟର</p>
+                    <span class="price">₹580+</span>
+                    <a href="tel:9777752212">📞 କଲ୍</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NOTICE -->
+        <div style="background:#3d2020; border:2px solid #ff6b6b; border-radius:10px; padding:20px; margin:30px 0; text-align:center;">
+            <h3 style="color:#ff6b6b;">📢 ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ସୂଚନା</h3>
+            <p style="color:#ccc;">ସମସ୍ତ ମୂଲ୍ୟ ବଜାର ଅନୁସାରେ ବଦଳେ। ଅର୍ଡର ପାଇଁ କଲ୍ କରନ୍ତୁ!</p>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <h2>🙏 ଜଗନ୍ନାଥ ଏଣ୍ଟରପ୍ରାଇଜେସ୍</h2>
+        <p>📍 ଦଳନଇ, ପୁରୀ, ଓଡ଼ିଶା</p>
+        <a href="tel:9777752212" class="big-call">📞 9777752212</a>
+        <p style="margin-top:20px; color:#666;">© 2024 | ଜୟ ଜଗନ୍ନାଥ 🙏</p>
+    </div>
+
+    <!-- FLOATING CALL BUTTON -->
+    <a href="tel:9777752212" class="float-btn">📞</a>
+
+</body>
+</html>
