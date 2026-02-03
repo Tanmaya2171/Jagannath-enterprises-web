@@ -702,6 +702,74 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* For blog section */
+        .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.menu-item {
+    background: white;
+    padding: 28px 22px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(46, 125, 50, 0.2);
+    border-color: #4caf50;
+}
+
+.clickable-h3 {
+    font-size: 1.5rem;
+    color: #1b5e20;
+    margin-bottom: 12px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.clickable-h3:hover {
+    color: #2e7d32;
+}
+
+.clickable-h3 .arrow {
+    margin-left: 10px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-size: 1.3rem;
+}
+
+.menu-item:hover .clickable-h3 .arrow {
+    opacity: 1;
+    transform: translateX(8px);
+}
+
+.menu-item p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* ମୋବାଇଲ୍ ପାଇଁ */
+@media (max-width: 480px) {
+    .clickable-h3 {
+        font-size: 1.35rem;
+    }
+    .menu-item {
+        padding: 22px 18px;
+    }
+}
     </style>
 
     <!-- JavaScript for for using Email js features -->
@@ -743,7 +811,7 @@
                 <h3>କୀଟନାଶକ</h3>
                 <p>ପ୍ରଭାବଶାଳୀ ଫସଲ ସୁରକ୍ଷା</p>
             </a>
-            <a href="seeds.html" class="menu-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+            <a href="seed.html" class="menu-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
                 <img src="seed.jpg" alt="Variety of Hybrid Seeds in small bags">
                 <h3>ହାଇବ୍ରିଡ୍ ବିହନ</h3>
                 <p>ଉଚ୍ଚ-ଅମଳକ୍ଷମ କିସମ</p>
@@ -765,23 +833,40 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
-        <h2 data-aos="fade-up" data-aos-duration="800">ଆମର ସେବାଗୁଡିକ</h2>
-        <div class="services-grid">
-            <div class="menu-item" data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
-                <h3>କୃଷି ଉପକରଣ</h3>
-                <p>ଏଠାରେ କୃଷି ଉପକରଣ ଉପଲବ୍ଧ</p>
-            </div>
-            <div class="menu-item" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
-                <h3>ଫସଲ ପରାମର୍ଶ</h3>
-                <p>ବିଶେଷଜ୍ଞ ଚାଷ ପରାମର୍ଶ</p>
-            </div>
-            <div class="menu-item" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000">
-                <h3>ବିତରଣ</h3>
-                <p>ଦ୍ରୁତ ଏବଂ ନିର୍ଭରଯୋଗ୍ୟ ସେବା</p>
-            </div>
+   <section id="services" class="services">
+    <h2 data-aos="fade-up" data-aos-duration="800">ଆମର ସେବାଗୡିକ</h2>
+    
+    <div class="services-grid">
+
+        <!-- ସେବା 1 -->
+        <div class="menu-item" data-aos="fade-right" data-aos-delay="100">
+            <h3 onclick="openService('krushi-upakaran.html')" class="clickable-h3">
+                କୃଷି ଉପକରଣ
+                <span class="arrow">➜</span>
+            </h3>
+            <p>ଟ୍ରାକ୍ଟର, ପମ୍ପ, ସ୍ପ୍ରେୟର, ହଳ ଇତ୍ୟାଦି ଉପଲବ୍ଧ</p>
         </div>
-    </section>
+
+        <!-- ସେବା 2 -->
+        <div class="menu-item" data-aos="fade-right" data-aos-delay="200">
+            <h3 onclick="openService('fasal-paramarsha.html')" class="clickable-h3">
+                ଫସଲ ପରାମର୍ଶ
+                <span class="arrow">➜</span>
+            </h3>
+            <p>ବରିଷ୍ଠ କୃଷି ବିଶେଷଜ୍ଞଙ୍କ ଠାରୁ ମାଗଣା ପରାମର୍ଶ</p>
+        </div>
+
+        <!-- ସେବା 3 -->
+        <div class="menu-item" data-aos="fade-right" data-aos-delay="300">
+            <h3 onclick="openService('bitaran-seba.html')" class="clickable-h3">
+                ଘରକୁ ପହଞ୍ଚାଇବା ସେବା
+                <span class="arrow">➜</span>
+            </h3>
+            <p>ଦ୍ରୁତ, ନିର୍ଭରଯୋଗ୍ୟ ଏବଂ ମାଗଣା ଡେଲିଭରୀ (ନିର୍ଦ୍ଦିଷ୍ଟ ଦୂରତା ପର୍ଯ୍ୟନ୍ତ)</p>
+        </div>
+
+    </div>
+</section>
 
     <!-- Blog Section -->
     <section id="blog" class="blog">
@@ -979,5 +1064,22 @@
             });
         });
     </script>
+
+    /* script for blog section*/
+    <script>
+function openService(page) {
+    window.location.href = page;
+}
+
+// ମୋବାଇଲ୍‌ରେ ଟଚ୍ କଲେ ସୁନ୍ଦର ଦେଖାଇବା ପାଇଁ
+document.querySelectorAll('.clickable-h3').forEach(item => {
+    item.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+    });
+});
+</script>
 </body>
 </html>
