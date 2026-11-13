@@ -42,19 +42,37 @@
         }
 
         /* Navbar Styles */
-       .navbar {
-    background: rgba(15, 35, 25, 0.65);       /* dark transparent green */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+      .navbar {
+    background: rgba(15, 35, 25, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     color: white;
-    padding: 1.1rem 2.5rem;
+
+    padding: 10px 40px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    box-sizing: border-box;
     z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     transition: all 0.4s ease;
+}
+
+.navbar ul {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar.scrolled {
@@ -63,14 +81,7 @@
     box-shadow: 0 6px 25px rgba(0,0,0,0.25);
 }
 
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 2.2rem;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-}
+
 
 .navbar a {
     color: white;
@@ -778,16 +789,22 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-easing="ease-out-quad">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#menu">Products</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
-    </nav>
 
+    <img src="logo.png" alt="logo"
+    style="width: 40px; height: 40px; object-fit: contain; vertical-align: middle; transition: transform 0.3s ease; cursor: pointer;"
+    onmouseover="this.style.transform='scale(1.15)'"
+    onmouseout="this.style.transform='scale(1)'">
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Products</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+
+</nav>
     <!-- Banner -->
     <section id="home" class="banner">
         <img src="Banner.jpg" alt="Agricultural field with a view of a mountain range at sunset, symbolizing growth and prosperity." class="bg-video">
